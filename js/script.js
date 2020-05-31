@@ -19,7 +19,6 @@ function init() {
 window.onload = function(){init();}
 
 function cur_time() {
-    var stat;
     var d = new Date();
     var m = d.getMonth();
     var day = d.getDate();
@@ -34,6 +33,7 @@ function cur_time() {
 
     setInterval(function() {
         var d = new Date(); // Init time
+        var stat; // Status of the day
         // Morning timing
         var mStart = '0000';
         var mEnd = '1159';
@@ -102,9 +102,9 @@ function music() {
     if (conf.yt === "" && conf.sc === "")
         return console.error("You should disable music to prevent any unwanted bugs.");
     if (conf.yt === "" || conf.sc !== "")
-        return soundcloud();
+        soundcloud();
     if (conf.yt !== "" || conf.sc === "")
-        return youtube();
+        youtube();
     if (conf.yt === "" || conf.sc === "")
         return console.error("You provided both a Soundcloud and YouTube playlist");
 }
@@ -113,7 +113,10 @@ function music() {
 function soundcloud() {
     var player;
     var emb = document.getElementById("iframei");
-    document.createElement('script').script = "sc.js"; // Loads the SC Widget API for ease with these next titbits
+    var scr = document.createElement('script')
+    scr.script = "https://w.soundcloud.com/player/api.js"; // Loads the SC Widget API for ease with these next titbits
+    var fs = document.getElementsByTagName('script')[0];
+    fs.parentNode.insertBefore(scr, fs); // Puts SC Widget API into Document
     player = SC.Widget(emb);
     player.load(conf.sc, {
         autoplay: true,
@@ -133,3 +136,11 @@ function soundcloud() {
         }
     });
 }
+
+function bg() {}
+
+// Runtime bit for a video background
+function video() {}
+
+// Runtime bit for a dynamic slideshow based off the time of day
+function dyn_slideshow() {}
