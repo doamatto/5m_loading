@@ -3,10 +3,12 @@ Put simply, **5M Loading is just another loading screen for FiveM.**
 
 Put in more detail, 5M Loading is a feature-rich, customizable, and lightweight loading screen. Some of its notable features are:
 - Play music from YouTube or Soundcloud while you wait for loading. (WIP)
-- Show the time elapsed for loading into the game and ETA
+- Show the time elapsed for loading into the game and ETA (WIP)
 - Easy to customize footer text
 - Display a video, GIF, or a slideshow while the game loads
-- Add a logo to your loading screen (WIP)
+- Add a logo to your loading screen
+
+You can see the progress on [this Trello board.](https://trello.com/b/aePOCnqI)
 
 Put into even more grave detail, all of this is planned and most of it hasn't been done yet. I'm only now starting to dabble in FiveM modding. If I like it, you can expect a bit more of this in future, as well as for other games.
 
