@@ -5,7 +5,7 @@ Put in more detail, 5M Loading is a feature-rich, customizable, and lightweight 
 - Play music from YouTube or Soundcloud while you wait for loading. (WIP)
 - Show the time elapsed for loading into the game and ETA (WIP)
 - Easy to customize footer text
-- Display a video, GIF, or a slideshow while the game loads
+- Display a video, GIF, or a slideshow while the game loads (WIP)
 - Add a logo to your loading screen
 
 You can see the progress on [this Trello board.](https://trello.com/b/aePOCnqI)

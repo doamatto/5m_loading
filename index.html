@@ -1,20 +1,23 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset='UTF-8' />
+        <meta charset="UTF-8" />
         <title>5mLoading</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <link rel='stylesheet' href='css/style.css' type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
         <script src="js/script.js" type="text/javascript"></script>
     </head>
-    <body onload='init();'>
-    	<div id='player'></div>
-        <div id='centre'>
-            <img class="server-logo item" src='img/logo.png' onerror="logo()" />
-            <p class="server-name item">Your Server Name</p>
-            <p class='loading item'>Joining</p>
-            <div id='mute' class="item">Press spacebar to mute the audio.</div>
-            <p id='footer'></p>
+    <body onload="init();">
+        <div id="player"></div>
+        <iframe id="playeri"></iframe>
+        <div id="centre">
+            <img class="server-logo" src="img/logo.png" onerror="logo()" />
+            <p class="server-name">Your Server Name</p>
+            <p id="cur_time">00:00</p>
+            <p id="time"></p>
+            <p>Joining</p>
+            <div id="mute">Press spacebar to mute the audio.</div>
+            <p id="footer"></p>
         </div>
     </body>
 </html>

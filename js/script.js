@@ -1,7 +1,7 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
-var config = {
+var conf = {
     yt: [],
-    sc: [],
+    sc: ['https://soundcloud.com/monstercat/sets/half-an-orange-mostly-we-1'],
     vol: 40, // Sets volume for everything
 
     noheadertext: false // Disables the header text if you have a logo
@@ -15,6 +15,8 @@ function init() {
     // music(); // Runs Music Engine
     header(); // Disables the header text if you have a logo 
 }
+
+window.onload = function(){init();}
 
 function cur_time() {
     var stat;
@@ -58,7 +60,8 @@ function cur_time() {
         }
 
         // Set time on page
-        document.getElementById('time').innerHTML(now);
+        var r = now.match(/.{1,2}/g);
+        document.getElementById('cur_time').innerHTML = `${r[0]}:${r[1]}`;
     }, 3600000);
 }
 
@@ -70,6 +73,7 @@ function elapsed() {
         var se = Math.round(tDiff); // Round second count
         if(se >= 60) {
             a = se /60;
+            a = Math.round(a);
             b = se - 60;
         } // Round into minutes
         else  {
@@ -78,7 +82,7 @@ function elapsed() {
         } // Ensure less than one minute doesn't round on accident
 
         // Set elapsed on page
-        document.getElementById('time').innerHTML(`${a}m${b}s elapsed.`);
+        document.getElementById('time').innerHTML = `${a}m${b}s elapsed.`;
     }, 1000);
 }
 
@@ -89,6 +93,43 @@ function logo() {
 }
 
 function header() {
-    if(!config.noheadertext) return; // Cancels if not enabled
+    if(!conf.noheadertext) return; // Cancels if not enabled
     document.getElementsByClassName('server-name')[0].style.display = "none"; // Makes the header invisible
+}
+
+function music() {
+    // This function ensures there is data to provide to the respective music engines
+    if (conf.yt === "" && conf.sc === "")
+        return console.error("You should disable music to prevent any unwanted bugs.");
+    if (conf.yt === "" || conf.sc !== "")
+        return soundcloud();
+    if (conf.yt !== "" || conf.sc === "")
+        return youtube();
+    if (conf.yt === "" || conf.sc === "")
+        return console.error("You provided both a Soundcloud and YouTube playlist");
+}
+
+// Runtime bit for playing music via SoundCloud
+function soundcloud() {
+    var player;
+    var emb = document.getElementById("iframei");
+    document.createElement('script').script = "sc.js"; // Loads the SC Widget API for ease with these next titbits
+    player = SC.Widget(emb);
+    player.load(conf.sc, {
+        autoplay: true,
+        buying: false,
+        sharing: false,
+        download: false,
+        show_artwork: false,
+        show_playcount: false,
+        show_user: false,
+        single_active: true
+    }); // Loads audio into widget
+    player.setVolume(conf.vol); // Sets volume to whatever was configured
+    player.play(); // Ensure audio is playing when loaded
+    document.addEventListener("keypress", e => {
+        if(e.isComposing || e.keyCode === 32) {
+            player.toggle(); // Stops music with spacebar
+        }
+    });
 }

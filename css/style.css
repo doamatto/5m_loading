@@ -8,16 +8,14 @@ html, body {
 .centre {
     align-items: center;
     display: flex;
-    height: 0;
     justify-content: center;
-    margin: 0;
 }
 
-.item {
-    margin: 50%;
-    padding: 10px;
-}
-
-#player {
+#player, #playeri {
     display: none;    
+}
+
+.server-logo {
+    border: none;
+    width: 500px;
 }
