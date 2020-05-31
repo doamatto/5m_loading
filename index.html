@@ -10,11 +10,11 @@
     <body onload='init();'>
     	<div id='player'></div>
         <div id='centre'>
-            <img src='img/logo.png' />
-            <p class="server-name">Your Server Name</p>
-            <p class='loading'>Joining</p>
-            <div id='pressspacebar'>Press spacebar to mute the audio.</div>
-            <p class='discord'></p>
+            <img class="server-logo item" src='img/logo.png' onerror="logo()" />
+            <p class="server-name item">Your Server Name</p>
+            <p class='loading item'>Joining</p>
+            <div id='pressspacebar' class="item">Press spacebar to mute the audio.</div>
+            <p id='footer'></p>
         </div>
     </body>
 </html>

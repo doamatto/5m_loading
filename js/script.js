@@ -79,3 +79,8 @@ function elapsed() {
     }, 1000);
 }
 
+// Runtime bit in case the logo is missing
+function logo() {
+    document.getElementsByClassName('server-logo')[0].style.display = "none";
+    document.getElementsByClassName('server-name')[0].style.display = "block";
+}
