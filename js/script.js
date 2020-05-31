@@ -1,8 +1,8 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
-    yt: ["PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
-    // sc: "https://soundcloud.com/monstercat/sets/half-an-orange-mostly-we-1",
-    sc: "",
+    // yt: ["PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
+    sc: "https://api.soundcloud.com/playlists/913300852",
+    yt: "",
     vol: 40, // Sets volume for everything
 
     noheadertext: false // Disables the header text if you have a logo
@@ -15,6 +15,7 @@ function init() {
     // eta(); // Displays ETA for Joining
     music(); // Runs Music Engine
     header(); // Disables the header text if you have a logo 
+    // bg(); // Runs Background Engine
 }
 
 window.onload = function(){init();}
@@ -88,18 +89,18 @@ function logo() {
 
 function header() {
     if(!conf.noheadertext) return; // Cancels if not enabled
-    document.getElementsByClassName('server-name')[0].style.display = "none"; // Makes the header invisible
+    document.getElementsByClassName('server-name')[0].style.display = "none";
 }
 
 function music() {
     // This function ensures there is data to provide to the respective music engines
-    if (conf.yt === "" && conf.sc === "")
+    if (conf.yt === "" && conf.sc === "") // No values for either source
         return console.error("You should disable music to prevent any unwanted bugs.");
-    if (conf.yt !== "" && conf.sc !== "")
+    if (conf.yt !== "" && conf.sc !== "") // Values for both sources
         return console.error("You provided both a Soundcloud and YouTube playlist");
-    if (conf.sc !== "")
+    if (conf.sc !== "") // Value for Soundcloud
         soundcloud();
-    if (conf.yt !== "")
+    if (conf.yt !== "") // Value for YouTube
         youtube();
 }
 
@@ -107,23 +108,30 @@ function music() {
 function soundcloud() {
     var tag = document.createElement('script');
     var fST = document.getElementsByTagName('script')[0];
-    tag.src = "https://w.soundcloud.com/player/api.js";
+    tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
     fST.parentNode.insertBefore(tag, fST);
-    var emb = document.querySelector('iframe').id;
-    var player = SC.Widget(emb);
-    player.load(conf.sc, {
-        autoplay: true,
-        show_artwork: false,
-        show_user: false,
-        single_active: true
-    }); // Loads audio into widget
-    player.setVolume(conf.vol); // Sets volume to whatever was configured
-    player.play(); // Ensure audio is playing when loaded
-    document.addEventListener("keypress", e => {
-        if(e.isComposing || e.keyCode === 32) {
-            player.toggle(); // Stops music with spacebar
-        }
-    });
+        setTimeout(function() { // We have to wait for the API to load.
+            var widgetIframe = document.getElementById('playeri');
+            var widget = SC.Widget(widgetIframe);
+            var context = new AudioContext();
+            widget.bind(SC.Widget.Events.READY, function() {
+                widget.load(conf.sc, {
+                    auto_play: true,
+                    show_artwork: false,
+                    show_user: false,
+                    single_active: true
+                }); // Loads audio into widget
+                widget.setVolume(conf.vol); // Sets volume to whatever was configured
+                context.resume();
+                widget.play(); // Ensure audio is playing when loaded
+                document.addEventListener("keypress", e => {
+                    if(e.isComposing || e.keyCode === 32) {
+                        widget.toggle(); // Stops music with spacebar
+                    }
+                });
+            });
+        }, 500);
+        
 }
 
 // Runtime bit for playing music via YouTube
