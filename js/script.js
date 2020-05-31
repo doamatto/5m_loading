@@ -2,7 +2,9 @@
 var config = {
     yt: [],
     sc: [],
-    vol: 40 // Sets volume for everything
+    vol: 40, // Sets volume for everything
+
+    noheadertext: false // Disables the header text if you have a logo
 }
 
 function init() {
@@ -11,6 +13,7 @@ function init() {
     elapsed(); // Displays Elapsed Time for Joining (not tested)
     // eta(); // Displays ETA for Joining
     // music(); // Runs Music Engine
+    header(); // Disables the header text if you have a logo 
 }
 
 function cur_time() {
@@ -83,4 +86,9 @@ function elapsed() {
 function logo() {
     document.getElementsByClassName('server-logo')[0].style.display = "none";
     document.getElementsByClassName('server-name')[0].style.display = "block";
+}
+
+function header() {
+    if(!config.noheadertext) return; // Cancels if not enabled
+    document.getElementsByClassName('server-name')[0].style.display = "none"; // Makes the header invisible
 }
