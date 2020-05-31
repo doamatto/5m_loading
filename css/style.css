@@ -1,0 +1,23 @@
+@import url('https://rsms.me/inter/inter.css'); /* Not sure if remote works */
+
+html, body {
+    font-family: 'Inter', sans-serif;
+    height: 100%;
+}
+
+.centre {
+    align-items: center;
+    display: flex;
+    height: 0;
+    justify-content: center;
+    margin: 0;
+}
+
+.item {
+    margin: 50%;
+    padding: 10px;
+}
+
+#player {
+    display: none;    
+}
