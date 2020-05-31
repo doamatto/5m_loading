@@ -1,7 +1,8 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
-    yt: [],
-    sc: ['https://soundcloud.com/monstercat/sets/half-an-orange-mostly-we-1'],
+    yt: ["https://www.youtube.com/playlist?list=PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
+    // sc: "https://soundcloud.com/monstercat/sets/half-an-orange-mostly-we-1",
+    sc: "",
     vol: 40, // Sets volume for everything
 
     noheadertext: false // Disables the header text if you have a logo
@@ -12,7 +13,7 @@ function init() {
     cur_time(); // Displays Current Time (not tested)
     elapsed(); // Displays Elapsed Time for Joining (not tested)
     // eta(); // Displays ETA for Joining
-    // music(); // Runs Music Engine
+    music(); // Runs Music Engine
     header(); // Disables the header text if you have a logo 
 }
 
@@ -101,30 +102,25 @@ function music() {
     // This function ensures there is data to provide to the respective music engines
     if (conf.yt === "" && conf.sc === "")
         return console.error("You should disable music to prevent any unwanted bugs.");
-    if (conf.yt === "" || conf.sc !== "")
-        soundcloud();
-    if (conf.yt !== "" || conf.sc === "")
-        youtube();
-    if (conf.yt === "" || conf.sc === "")
+    if (conf.yt !== "" && conf.sc !== "")
         return console.error("You provided both a Soundcloud and YouTube playlist");
+    if (conf.sc !== "")
+        soundcloud();
+    if (conf.yt !== "")
+        youtube();
 }
 
 // Runtime bit for playing music via SoundCloud
 function soundcloud() {
-    var player;
-    var emb = document.getElementById("iframei");
-    var scr = document.createElement('script')
-    scr.script = "https://w.soundcloud.com/player/api.js"; // Loads the SC Widget API for ease with these next titbits
-    var fs = document.getElementsByTagName('script')[0];
-    fs.parentNode.insertBefore(scr, fs); // Puts SC Widget API into Document
-    player = SC.Widget(emb);
+    var tag = document.createElement('script');
+    var fST = document.getElementsByTagName('script')[0];
+    tag.src = "https://w.soundcloud.com/player/api.js";
+    fST.parentNode.insertBefore(tag, fST);
+    var emb = document.querySelector('iframe').id;
+    var player = SC.Widget(emb);
     player.load(conf.sc, {
         autoplay: true,
-        buying: false,
-        sharing: false,
-        download: false,
         show_artwork: false,
-        show_playcount: false,
         show_user: false,
         single_active: true
     }); // Loads audio into widget
@@ -133,6 +129,30 @@ function soundcloud() {
     document.addEventListener("keypress", e => {
         if(e.isComposing || e.keyCode === 32) {
             player.toggle(); // Stops music with spacebar
+        }
+    });
+}
+
+// Runtime bit for playing music via YouTube
+function youtube() {
+    var tag = document.createElement('script');
+    var fST = document.getElementsByTagName('script')[0];
+    var player;
+    tag.src = "https://www.youtube.com/iframe_api";
+    fST.parentNode.insertBefore(tag, fST);
+    player = new YT.Player('player', {
+        height: '1',
+        playerVars: {
+            autoplay: 1,
+            controls: 0,
+            disablekb: 1,
+            enablejsapi: 1
+        }
+    });
+    player.cuePlaylist(conf.yt);
+    document.addEventListener("keypress", e => {
+        if(e.isComposing || e.keyCode === 32) {
+            player.pauseVideo(); // Stops music with spacebar
         }
     });
 }
