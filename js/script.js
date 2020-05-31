@@ -1,6 +1,6 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
-    yt: ["https://www.youtube.com/playlist?list=PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
+    yt: ["PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
     // sc: "https://soundcloud.com/monstercat/sets/half-an-orange-mostly-we-1",
     sc: "",
     vol: 40, // Sets volume for everything
@@ -140,16 +140,18 @@ function youtube() {
     tag.src = "https://www.youtube.com/iframe_api";
     fST.parentNode.insertBefore(tag, fST);
     window.onYouTubePlayerAPIReady = function() {
-        var player = new YT.Player('player', {
+        var player = new YT.Player("player", {
             height: '1',
             playerVars: {
                 autoplay: 1,
                 controls: 0,
                 disablekb: 1,
-                enablejsapi: 1
+                enablejsapi: 1,
+                fs: 0,
+                list: conf.yt,
+                listType: "playlist"
             }
         });
-        player.cuePlaylist(conf.yt);
         document.addEventListener("keypress", e => {
             if(e.isComposing || e.keyCode === 32) {
                 player.pauseVideo(); // Stops music with spacebar
