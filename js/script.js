@@ -137,24 +137,25 @@ function soundcloud() {
 function youtube() {
     var tag = document.createElement('script');
     var fST = document.getElementsByTagName('script')[0];
-    var player;
     tag.src = "https://www.youtube.com/iframe_api";
     fST.parentNode.insertBefore(tag, fST);
-    player = new YT.Player('player', {
-        height: '1',
-        playerVars: {
-            autoplay: 1,
-            controls: 0,
-            disablekb: 1,
-            enablejsapi: 1
-        }
-    });
-    player.cuePlaylist(conf.yt);
-    document.addEventListener("keypress", e => {
-        if(e.isComposing || e.keyCode === 32) {
-            player.pauseVideo(); // Stops music with spacebar
-        }
-    });
+    window.onYouTubePlayerAPIReady = function() {
+        var player = new YT.Player('player', {
+            height: '1',
+            playerVars: {
+                autoplay: 1,
+                controls: 0,
+                disablekb: 1,
+                enablejsapi: 1
+            }
+        });
+        player.cuePlaylist(conf.yt);
+        document.addEventListener("keypress", e => {
+            if(e.isComposing || e.keyCode === 32) {
+                player.pauseVideo(); // Stops music with spacebar
+            }
+        });
+    }
 }
 
 function bg() {}
