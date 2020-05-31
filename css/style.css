@@ -5,10 +5,14 @@ html, body {
     height: 100%;
 }
 
-.centre {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+body {
+    background: #3b3b3b;
+    color: white;
+    display: grid; /* Using a grid, we can centre the content of the page without my computer thinking I'm insane the first million times I write this line */
+}
+
+#centre {
+    margin: auto;
 }
 
 #player, #playeri {
