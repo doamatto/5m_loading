@@ -70,17 +70,10 @@ function elapsed() {
     setInterval(function() {
         var a, b;
         var e = performance.now(); // Get time every second
-        var tDiff = e / 1000; // Bring into seconds from ms
-        var se = Math.round(tDiff); // Round second count
-        if(se >= 60) {
-            a = se /60;
-            a = Math.round(a);
-            b = se - 60;
-        } // Round into minutes
-        else  {
-            a = 0;
-            b = se;
-        } // Ensure less than one minute doesn't round on accident
+        var tDiff = Math.round(e / 1000); // Bring into seconds from ms
+        a = tDiff / 60; // Solve s to m
+        a = Math.floor(a); // Round down to smallest m (good for fractionslike 5/3)
+        b = tDiff % 60; // Rounds seconds and keeps under 60.
 
         // Set elapsed on page
         document.getElementById('time').innerHTML = `${a}m${b}s elapsed.`;
@@ -140,6 +133,7 @@ function youtube() {
     tag.src = "https://www.youtube.com/iframe_api";
     fST.parentNode.insertBefore(tag, fST);
     window.onYouTubePlayerAPIReady = function() {
+        var p = true;
         var player = new YT.Player("player", {
             height: '1',
             playerVars: {
@@ -154,7 +148,11 @@ function youtube() {
         });
         document.addEventListener("keypress", e => {
             if(e.isComposing || e.keyCode === 32) {
-                player.pauseVideo(); // Stops music with spacebar
+                p = !p;
+                if (!p)
+                    player.pauseVideo(); // Stops music with spacebar
+                if (p)
+                    player.playVideo();
             }
         });
     }
