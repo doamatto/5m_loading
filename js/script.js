@@ -1,19 +1,6 @@
-// For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
-var conf = {
-    // yt: ["PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F"],
-    sc: "https://api.soundcloud.com/playlists/913300852",
-    yt: "",
-    vol: 40, // Sets volume for everything
-
-    morning_photos: ["img/m01.png","img/m02.png","img/m03.png","img/m04.png","img/m05.png","img/m06.png","img/m07.png","img/m08.png","img/m09.png","img/m10.png"],
-    afternoon_photos: ["img/a01.png","img/a02.png","img/a03.png","img/a04.png","img/a05.png","img/a06.png","img/a07.png","img/a08.png","img/a09.png","img/a10.png"],
-    evening_photos: ["img/e01.png","img/e02.png","img/e03.png","img/e04.png","img/e05.png","img/e06.png","img/e07.png","img/e08.png","img/e09.png","img/e10.png"],
-
-    noheadertext: false // Disables the header text if you have a logo
-}
-
 function init() {
     // To disable music, prepend '//' to 'music();' to comment the line.
+    loadConf(); // Loads config file
     cur_time(); // Displays Current Time (not tested)
     elapsed(); // Displays Elapsed Time for Joining (not tested)
     // eta(); // Displays ETA for Joining
@@ -23,6 +10,18 @@ function init() {
 }
 
 window.onload = function(){init();}
+
+function loadConf() {
+    var tag = document.createElement('script');
+    var fST = document.getElementsByTagName('script')[0];
+    try {
+        tag.src = "config.js"; // Load config
+        fST.parentNode.insertBefore(tag, fST);
+    } catch (err) {
+        return console.error("[5mloading] Ensure your config.js is properly setup and doesn't have any issues. Error: " + err);
+    }
+    setTimeout(function(){}, 500); // Ensures data is loaded before proceeding
+}
 
 function cur_time() {
     var d = new Date();
@@ -99,12 +98,12 @@ function header() {
 function music() {
     // This function ensures there is data to provide to the respective music engines
     if (conf.yt === "" && conf.sc === "") // No values for either source
-        return console.error("You should disable music to prevent any unwanted bugs.");
+        return console.error("[5mloading] Either you misconfigured your music, or you aren't using it. Please disable such in js/script.js to resolve this error.");
     if (conf.yt !== "" && conf.sc !== "") // Values for both sources
-        return console.error("You provided both a Soundcloud and YouTube playlist");
-    if (conf.sc !== "") // Value for Soundcloud
+        return console.error("[5mloading] You provided both a Soundcloud and YouTube playlist");
+    if (conf.sc !== "" || conf.sc !== undefined) // Value for Soundcloud
         soundcloud();
-    if (conf.yt !== "") // Value for YouTube
+    if (conf.yt !== "" || conf.yt !== undefined) // Value for YouTube
         youtube();
 }
 

@@ -9,16 +9,21 @@
     </head>
     <body onload="init();">
         <div id="player"></div>
-        <div id="bg"></div>
         <iframe allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/913300852" id="playeri"></iframe>
         <div id="centre">
             <img class="server-logo" src="img/logo.png" onerror="logo()" />
             <p class="server-name">Your Server Name</p>
-            <p id="cur_time">00:00</p>
-            <p id="time">0m0s elapsed</p>
             <p>Joining</p>
-            <div id="mute">Press spacebar to mute the audio.</div>
-            <p id="footer"></p>
         </div>
+        <footer>
+            <div id="l">
+                <div id="mute">Press spacebar to mute the audio.</div>
+                <p id="footer">Developed and Designed with &#9829; by doamatto.</p>
+            </div>
+            <div id="r">
+                <p id="cur_time">00:00</p>
+                <p id="time">0m0s elapsed</p>
+            </div>
+        </footer>
     </body>
 </html>

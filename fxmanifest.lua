@@ -12,4 +12,5 @@ files {
     'css/style.css',
     'img/logo.png',
     'script.js',
+    'config.json',
 }
