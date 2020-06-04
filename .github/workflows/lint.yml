@@ -1,0 +1,30 @@
+name: "Linting"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1.4.2
+      
+    - name: js-lint
+      run: |
+        npm i jshint -g
+        jshint js/script.js
+    - name: css-lint
+      run: |
+        npm i csslint -g
+        csslint css/style.css
+    - name: lua-lint
+      uses: leafo/gh-actions-lua@v5
+      uses: leafo-gh-actions-luarocks@v2
+      run: |
+        luarocks install luacheck
+        luacheck src fxmanifest.lua
