@@ -206,19 +206,12 @@ function imgur() {
             setTimeout(function() {
                 var imgIndex = 0;
                 var i;
-                for(i=0; i<data.length;i++) {
-                    x[i].style.display = "none";
-                } // Ensures everything is hidden before cycling starts
                 imgIndex++;
                 if(imgIndex > data.length) { imgIndex = 1; }
                 document.body.style.backgroundImage = data[imgIndex-1].link;
-            });
-        } // Loads the Imgur images into the document
-    })
-
-    // Actual slideshow action
-    setTimeout(function(){
-    }, 2000);
+            }, 2000);
+        } // Cycles the Imgur images on the page
+    });
 }
 
 // Runtime bit for a dynamic slideshow based off the time of day (scheduled for v0.2)
