@@ -1,26 +1,26 @@
+// For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
+var conf = {
+    // yt: "PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F",
+    yt: "",
+    sc: "https://api.soundcloud.com/playlists/913300852",
+    vol: 40, // Sets volume for everything
+
+    imgur_clientID: "1720352899b51e7", // Needed for Imgur API; no need to provide if you aren't using Imgur for your BG
+    imgur_albumHash: "OqLdw9s", // Album Hash needed for
+
+    static_imageURL: "", // Map to the location of the static image you want to use 
+
+    noheadertext: false // Disables the header text if you have a logo
+}
+
 function init() {
     // To disable music, prepend '//' to 'music();' to comment the line.
-    loadConf(); // Loads config file
     cur_time(); // Displays Current Time (not tested)
     elapsed(); // Displays Elapsed Time for Joining (not tested)
     // eta(); // Displays ETA for Joining
     music(); // Runs Music Engine
     header(); // Disables the header text if you have a logo 
-    // bg(); // Runs Background Engine
-}
-
-window.onload = function(){init();}
-
-function loadConf() {
-    var tag = document.createElement('script');
-    var fST = document.getElementsByTagName('script')[0];
-    try {
-        tag.src = "config.js"; // Load config
-        fST.parentNode.insertBefore(tag, fST);
-    } catch (err) {
-        return console.error("[5mloading] Ensure your config.js is properly setup and doesn't have any issues. Error: " + err);
-    }
-    setTimeout(function(){}, 500); // Ensures data is loaded before proceeding
+    bg(); // Runs Background Engine
 }
 
 function cur_time() {
@@ -102,9 +102,9 @@ function music() {
     if (conf.yt !== "" && conf.sc !== "") // Values for both sources
         return console.error("[5mloading] You provided both a Soundcloud and YouTube playlist");
     if (conf.sc !== "" || conf.sc !== undefined) // Value for Soundcloud
-        soundcloud();
+        return soundcloud();
     if (conf.yt !== "" || conf.yt !== undefined) // Value for YouTube
-        youtube();
+        return youtube();
 }
 
 // Runtime bit for playing music via SoundCloud
@@ -125,7 +125,7 @@ function soundcloud() {
                     single_active: true
                 }); // Loads audio into widget
                 widget.setVolume(conf.vol); // Sets volume to whatever was configured
-                context.resume();
+                context.resume(); // Temporary solution to https://goo.gl/7K7WLu
                 widget.play(); // Ensure audio is playing when loaded
                 document.addEventListener("keypress", e => {
                     if(e.isComposing || e.keyCode === 32) {
@@ -133,7 +133,7 @@ function soundcloud() {
                     }
                 });
             });
-        }, 500);
+        }, 750);
         
 }
 
@@ -169,13 +169,60 @@ function youtube() {
     }
 }
 
-function bg() {}
+function bg() {
+    // This function ensures there is data to provide to the respective music engines
+    if (conf.imgur_albumHash === "" && conf.static_imageURL === "") // No values for either source
+        return console.error("[5mloading] Either you misconfigured your background, or you didn't configure it. Please disable such in js/script.js or fix your configuration to resolve this error.");
+    if (conf.imgur_albumHash !== "" && conf.static_imageURL !== "") // Values for both sources
+        return console.error("[5mloading] You provided both an Imgur album and a static image");
+    if(conf.imgur_albumHash !== undefined || conf.imgur !== "")
+        return imgur();
+    if(conf.static_imageURL !== undefined || conf.staticImageURL !== "" && conf.imgur_albumHashgur !== "" || conf.imgur_albumHash !== undefined)
+            return document.body.style.background = "#3b3b3b";
+    if(conf.static_imageURL !== undefined || conf.static_imageURL !== "") {
+        return (function() {
+            document.body.style.backgroundImage = `url ('${conf.static_imageURL}')`;
+        });
+    }
+}
 
-// Runtime bit for a video background
-function video() {}
+// Runtime bit for an Imgur gallery ( AJAX ;-; )
+function imgur() {
+    var settings = {
+        async: false,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+        type: 'GET',
+        url: `https://api.imgur.com/3/album/${conf.imgur_albumHash}/images`,
+        headers: {
+            Authorization: `Client-ID ${conf.imgur_clientID}`,
+            Accept: 'application/json'
+        },
+        mimeType: 'multipart/form-data'
+    };
+    $.ajax(settings).done(function(data){
+        for(var i=0; i<data.length;i++){
+            setTimeout(function() {
+                var imgIndex = 0;
+                var i;
+                for(i=0; i<data.length;i++) {
+                    x[i].style.display = "none";
+                } // Ensures everything is hidden before cycling starts
+                imgIndex++;
+                if(imgIndex > data.length) { imgIndex = 1; }
+                document.body.style.backgroundImage = data[imgIndex-1].link;
+            });
+        } // Loads the Imgur images into the document
+    })
 
-// Runtime bit for a dynamic slideshow based off the time of day
-function dyn_slideshow() {
+    // Actual slideshow action
+    setTimeout(function(){
+    }, 2000);
+}
+
+// Runtime bit for a dynamic slideshow based off the time of day (scheduled for v0.2)
+function timebased_slideshow() {
     var d = new Date(); // Init time
     var stat; // Status of the day
     // Morning timing
