@@ -203,9 +203,8 @@ function imgur() {
     };
     $.ajax(settings).done(function(data){
         for(var i=0; i<data.length;i++){
-            setTimeout(function() {
+            setInterval(function() {
                 var imgIndex = 0;
-                var i;
                 imgIndex++;
                 if(imgIndex > data.length) { imgIndex = 1; }
                 document.body.style.backgroundImage = data[imgIndex-1].link;
