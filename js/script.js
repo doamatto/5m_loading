@@ -1,3 +1,4 @@
+/*jshint esversion: 6*/
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
     // yt: "PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F",
@@ -5,13 +6,13 @@ var conf = {
     sc: "https://api.soundcloud.com/playlists/913300852",
     vol: 40, // Sets volume for everything
 
-    imgur_clientID: "1720352899b51e7", // Needed for Imgur API; no need to provide if you aren't using Imgur for your BG
-    imgur_albumHash: "OqLdw9s", // Album Hash needed for
+    imgur_clientID: "", //"1720352899b51e7", // Needed for Imgur API; no need to provide if you aren't using Imgur for your BG
+    imgur_albumHash: "",//"OqLdw9s", // Album Hash needed for
 
-    static_imageURL: "", // Map to the location of the static image you want to use 
+    static_imageURL: "https://images.pexels.com/photos/670061/pexels-photo-670061.jpeg?auto=compress", // Map to the location of the static image you want to use 
 
     noheadertext: false // Disables the header text if you have a logo
-}
+};
 
 function init() {
     // To disable music, prepend '//' to 'music();' to comment the line.
@@ -133,7 +134,7 @@ function soundcloud() {
                     }
                 });
             });
-        }, 750);
+        }, 2500);
         
 }
 
@@ -171,19 +172,18 @@ function youtube() {
 
 function bg() {
     // This function ensures there is data to provide to the respective music engines
-    if (conf.imgur_albumHash === "" && conf.static_imageURL === "") // No values for either source
-        return console.error("[5mloading] Either you misconfigured your background, or you didn't configure it. Please disable such in js/script.js or fix your configuration to resolve this error.");
-    if (conf.imgur_albumHash !== "" && conf.static_imageURL !== "") // Values for both sources
+    if (conf.imgur_albumHash !== "" && conf.static_imageURL !== "") {
         return console.error("[5mloading] You provided both an Imgur album and a static image");
-    if(conf.imgur_albumHash !== undefined || conf.imgur !== "")
-        return imgur();
-    if(conf.static_imageURL !== undefined || conf.staticImageURL !== "" && conf.imgur_albumHashgur !== "" || conf.imgur_albumHash !== undefined)
-            return document.body.style.background = "#3b3b3b";
+    } // Values for both sources
     if(conf.static_imageURL !== undefined || conf.static_imageURL !== "") {
-        return (function() {
-            document.body.style.backgroundImage = `url ('${conf.static_imageURL}')`;
-        });
+        document.body.style.backgroundImage = `url ('${conf.static_imageURL}')`;
+    } // If a static image is provided
+    if(conf.imgur_albumHash !== undefined || conf.imgur_albumHash !== "") {
+        return imgur();
     }
+    if(conf.static_imageURL !== undefined || conf.staticImageURL !== "" && conf.imgur_albumHashgur !== "" || conf.imgur_albumHash !== undefined) {
+        return document.body.style.background = "#3b3b3b";
+    } // No data at all
 }
 
 // Runtime bit for an Imgur gallery ( AJAX ;-; )
@@ -279,7 +279,7 @@ function timebased_slideshow() {
             x[i].style.display = "none";
         }
         slideIndex++;
-        if(slideIndex>x.length) { slideIndex = 1 };
+        if(slideIndex>x.length) { slideIndex = 1; }
         x[slideIndex-1].style.display = "block";
         setTimeout(carousel, 5000); // Keep repeating it
     }
