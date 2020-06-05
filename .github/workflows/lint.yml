@@ -26,7 +26,7 @@ jobs:
     - name: Setup Lua
       uses: leafo/gh-actions-lua@v5
     - name: Setup LuaRocks
-      uses: leafo-gh-actions-luarocks@v2
+      uses: leafo/gh-actions-luarocks@v2
     - name: lua-lint
       run: |
         luarocks install luacheck
