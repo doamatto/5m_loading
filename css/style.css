@@ -3,35 +3,58 @@
 * { margin: auto; }
 
 html, body {
-    font-family: 'Inter', sans-serif;
-    height: 100%;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
 }
 
 body {
-    background: #3b3b3b;
-    color: white;
-    display: grid; /* Using a grid, we can centre the content of the page without my computer thinking I'm insane the first million times I write this line */
+  background: #3b3b3b; /* Failback BG in case JS doesn't work orno background is used */
+  color: white;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-#centre { margin: auto; }
+#centre { 
+  margin: auto;
+  text-align: center; /* Centres the image */
+  z-index: 2; /* Used in the future for BGs */
+}
+#bg { z-index: 1; } /* Z-index is used for bg overlay */
 
 #player, #playeri { display: none; } /* Hides the YT and SC players */
 
-.server-logo {
-    border: none;
-    width: 500px;
+.server-logo { border: none; }
+
+.header { font-size: 3.5em; } /* header */
+
+.sub {
+	color: #d4d4d4;
+	font-size: 1.5em;
+} /* subheader */
+
+.subsub {
+	color: #c5c5c5;
+	font-size: 1.25em;
+} /* subheader for the subheader */
+
+.header, .sub { text-align: center; } /* centres text */
+
+#footer {
+	flex-shrink: 0;
+	height: 5vh; /* Keeps size not too big, not too small */
+  width: 90%;
+  z-index: 2;
 }
 
-footer {
-    weight: 100%;
-    height: 10vh;
-    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(224,86,86,0.5) 5%, rgba(0,0,0,0) 100%);
+.footer-text {
+	font-size: .90em;
 }
 
-#l {
-    float: left;
-}
+span { color: #f62c43; }
 
-#r {
-    float: right;
+/* Floats for footer */
+.l { 
+	float: left;
 }
+.r { float: right; }
