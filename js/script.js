@@ -1,9 +1,8 @@
 /*jshint esversion: 6*/
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
-  // yt: "PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F",
   yt: "",
-  sc: "https://api.soundcloud.com/playlists/913300852",
+  sc: "https://api.soundcloud.com/playlists/1054277434",
   vol: 40, // Sets volume for everything
 
   noheadertext: false // Disables the header text if you have a logo
@@ -20,50 +19,16 @@ function init() {
 }
 
 function cur_time() {
-    var d = new Date();
-    var m = d.getMonth();
-    var day = d.getDate();
-    var wd = d.getDay();
-    
-    if (m < 2 || m > 10) { return false; }
-    if (m > 2 && m < 10) {
-      var prevSun = day - wd;
-      if (m == 2) return prevSun >= 8;
-      return prevSun <= 0;
-    }
-
+    var dateData = new Date(),
+        h = dateData.getHours(),
+        m = dateData.getMinutes();
+    document.getElementById('cur_time').innerHTML = `${h}:${m}`;
     setInterval(function() {
-        var d = new Date(); // Init time
-        var stat; // Status of the day
-        // Morning timing
-        var mStart = '0000';
-        var mEnd = '1159';
-        // Afternoon timing
-        var aStart = '1200';
-        var aEnd = '1659';
-        // Evening timing
-        var eStart = '1700';
-        var eEnd = '2359';
-        // Time formatting
-        var f;
-        if (d.getHours() <= 9) {
-            var eStr = d.getHours().toString();
-            f = eStr.replace(/^/,'0');
-        } else { f = d.getHours(); } // Check if past 9, prepend 0 if not.
-        var now = f + "" + d.getMinutes(); // Set cur_time
-        // Check to see timing
-        if (now <= mEnd && now >= mStart) {
-            stat = "m";
-        } else if (now <= aEnd && now >= aStart ) {
-            stat = "a";
-        } else if (now <= eEnd && now >= eStart ) {
-            stat = "e";
-        }
-
-        // Set time on page
-        var r = now.match(/.{1,2}/g);
-        document.getElementById('cur_time').innerHTML = `${r[0]}:${r[1]}`;
-    }, 3600000);
+        var dateData = new Date(),
+            h = dateData.getHours(),
+            m = dateData.getMinutes();
+        document.getElementById('cur_time').innerHTML = `${h}:${m}`;
+    }, 60000);
 }
 
 function elapsed() {
