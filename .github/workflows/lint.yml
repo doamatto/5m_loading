@@ -22,12 +22,3 @@ jobs:
       run: |
         npm i csslint -g
         csslint css/style.css
-        
-    - name: Setup Lua
-      uses: leafo/gh-actions-lua@v5
-    - name: Setup LuaRocks
-      uses: leafo/gh-actions-luarocks@v2
-    - name: lua-lint
-      run: |
-        luarocks install luacheck
-        luacheck src fxmanifest.lua
