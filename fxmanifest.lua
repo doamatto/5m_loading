@@ -11,6 +11,6 @@ files {
     'loadscreen.html',
     'css/style.css',
     'img/logo.png',
-    'script.js',
-    'config.json',
+    'js/script.js',
+    'js/jquery-3.5.1.min.js',
 }
