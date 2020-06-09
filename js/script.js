@@ -1,17 +1,12 @@
 /*jshint esversion: 6*/
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
-    // yt: "PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F",
-    yt: "",
-    sc: "https://api.soundcloud.com/playlists/913300852",
-    vol: 40, // Sets volume for everything
+  // yt: "PLe8jmEHFkvsZ6F7CTdGRofEUB2k_ecs0F",
+  yt: "",
+  sc: "https://api.soundcloud.com/playlists/913300852",
+  vol: 40, // Sets volume for everything
 
-    imgur_clientID: "", //"1720352899b51e7", // Needed for Imgur API; no need to provide if you aren't using Imgur for your BG
-    imgur_albumHash: "",//"OqLdw9s", // Album Hash needed for
-
-    static_imageURL: "https://images.pexels.com/photos/670061/pexels-photo-670061.jpeg?auto=compress", // Map to the location of the static image you want to use 
-
-    noheadertext: false // Disables the header text if you have a logo
+  noheadertext: false // Disables the header text if you have a logo
 };
 
 function init() {
@@ -21,7 +16,7 @@ function init() {
     // eta(); // Displays ETA for Joining
     music(); // Runs Music Engine
     header(); // Disables the header text if you have a logo 
-    bg(); // Runs Background Engine
+    // bg(); // Runs Background Engine (DO NOT ENABLE! IT DOESN'T WORK AT ALL RIGHT NOW)
 }
 
 function cur_time() {
@@ -167,9 +162,10 @@ function youtube() {
                     player.playVideo();
             }
         });
-    }
+    };
 }
 
+/* A bunch of code for the background engine: commented to prevent bugs but to preserve
 function bg() {
     // This function ensures there is data to provide to the respective music engines
     if (conf.imgur_albumHash !== "" && conf.static_imageURL !== "") {
@@ -182,7 +178,8 @@ function bg() {
         return imgur();
     }
     if(conf.static_imageURL !== undefined || conf.staticImageURL !== "" && conf.imgur_albumHashgur !== "" || conf.imgur_albumHash !== undefined) {
-        return document.body.style.background = "#3b3b3b";
+        document.body.style.background = "#3b3b3b";
+        return;
     } // No data at all
 }
 
@@ -284,3 +281,4 @@ function timebased_slideshow() {
         setTimeout(carousel, 5000); // Keep repeating it
     }
 }
+*/
