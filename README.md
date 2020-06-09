@@ -1,4 +1,5 @@
 # 5M Loading
+
 Put simply, **5M Loading is just another loading screen for FiveM.**
 
 Put in more detail, 5M Loading is a feature-rich, customizable, and lightweight loading screen. Some of its notable features are:
@@ -12,7 +13,7 @@ You can see the progress on [this Trello board.](https://trello.com/b/aePOCnqI)
 Put into even more grave detail, all of this is planned and most of it hasn't been done yet. I'm only now starting to dabble in FiveM modding. If I like it, you can expect a bit more of this in future, as well as for other games.
 
 ### Installing
-Installation of 5M Loading (and just about any other FiveM addon) is super simple. Add the `5m_loading` folder to the resources folder (usually under `server-data/resources`or similar). Then, edit your `server.cfg` file to have `start 5m_loading` (use `ensure` instead of `start` if you don't want the server to work without the loading screen)
+Installation of 5M Loading (and just about any other FiveM addon) is super simple. Add the `5m_loading` folder to the resources folder (usually under `server-data/resources`or similar). Then, edit your `server.cfg` file to have `start 5m_loading` (use `ensure` instead of `start` if you don't want the server to work without the loading screen). If you're installing from source, copy all of this (you can exclude the `.github/` folder and the `.gitignore` and `README.md` files if you really want to; everything else is important) into a folder titled "5m_loading." Then, follow the instructions from before.
 
 ### Features Coming Soon
 To get v0.1 out (a bit late, sorry again!), I had to gut these features (they'll be in v0.2):
