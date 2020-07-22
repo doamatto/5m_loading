@@ -29,30 +29,28 @@ body {
 .sub {
 	color: #d4d4d4;
 	font-size: 1.5em;
-  } /* subheader */
+} /* subheader */
 
-  .subsub {
-   color: #c5c5c5;
-   font-size: 1.25em;
-   } /* subheader for the subheader */
+.subsub {
+ color: #c5c5c5;
+ font-size: 1.25em;
+} /* subheader for the subheader */
 
-   .header, .sub { text-align: center; } /* centres text */
+.header, .sub { text-align: center; } /* centres text */
 
-   #footer {
-     flex-shrink: 0;
-     height: 5vh; /* Keeps size not too big, not too small */
-     width: 90%;
-     z-index: 2;
-   }
+#footer {
+  flex-shrink: 0;
+  height: 5vh; /* Keeps size not too big, not too small */
+  width: 90%;
+  z-index: 2;
+}
 
-   .footer-text {
-     font-size: .90em;
-   }
+.footer-text {
+  font-size: .90em;
+}
 
-   span { color: #f62c43; }
+span { color: #f62c43; }
 
-   /* Floats for footer */
-   .l { 
-     float: left;
-   }
-   .r { float: right; }
+/* Floats for footer */
+.l { float: left; }
+.r { float: right; }
