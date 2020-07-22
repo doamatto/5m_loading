@@ -1,12 +1,14 @@
 * { margin: auto; }
 
 html, body {
+  background: #2f2f2f; /* Failback BG in case JS doesn't work or no background is used */
   font-family: 'Inter', sans-serif;
   height: 100%;
 }
 
 body {
-  background: #3b3b3b; /* Failback BG in case JS doesn't work orno background is used */
+  opacity: 0;
+  transition: all 500ms ease;
   color: white;
   z-index: 0;
   display: flex;
