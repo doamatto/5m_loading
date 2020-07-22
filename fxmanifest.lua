@@ -12,5 +12,4 @@ files {
     'css/style.css',
     'img/logo.png',
     'js/script.js',
-    'js/jquery-3.5.1.min.js',
 }

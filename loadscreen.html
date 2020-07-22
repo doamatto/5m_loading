@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <script src="js/script.js"></script>
-  <script src="js/jquery-3.5.1.min.js"></script>
 </head>
 <body onload="init();">
   <div id="bg"></div>
   <div id="player"></div>
   <iframe allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/913300852" id="playeri"></iframe>
   <div id="centre">
-    <img class="server-logo" src="img/logo.png" width ="350px" onerror="logo()" />
-    <p class="header">Your Server Name</p>
+    <img class="server-logo" id="server-logo" src="img/logo.png" width ="350px">
+    <p class="header server-name">Your Server Name</p>
     <p class="sub">Joining</p>
     <p class="subsub sub">Press spacebar to mute the audio.</p>
   </div>
