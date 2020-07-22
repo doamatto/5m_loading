@@ -28,6 +28,8 @@ function cur_time() {
     var dateData = new Date(),
       h = dateData.getHours(),
       m = dateData.getMinutes();
+    if (m === "0") { m === "00" }
+    if (m <= "9") { m === `0${m}`}
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
