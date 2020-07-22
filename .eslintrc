@@ -1,0 +1,20 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "script",
+        "ecmaFeatures": {
+            "jsx": false,
+            "experimentalObjectRestSpread": false
+        }
+    },
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ]
+    }
+}
