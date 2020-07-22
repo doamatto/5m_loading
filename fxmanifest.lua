@@ -3,7 +3,7 @@ games { 'common' }
 
 author { 'doamatto' }
 description { 'Another FiveM loading screen' }
-version '0.1.0'
+version '0.2.0'
 
 loadscreen 'loadscreen.html'
 
