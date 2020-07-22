@@ -60,13 +60,13 @@ function header() {
 function music() {
   // This function ensures there is data to provide to the respective music engines
   if (conf.yt === "" && conf.sc === "") // No values for either source
-      return console.error("[5mloading] Either you misconfigured your music, or you aren't using it. Please disable such in js/script.js to resolve this error.");
+    return console.error("[5mloading] Either you misconfigured your music, or you aren't using it. Please disable such in js/script.js to resolve this error.");
   if (conf.yt !== "" && conf.sc !== "") // Values for both sources
-      return console.error("[5mloading] You provided both a Soundcloud and YouTube playlist");
+    return console.error("[5mloading] You provided both a Soundcloud and YouTube playlist");
   if (conf.sc !== "" || conf.sc !== undefined) // Value for Soundcloud
-      return soundcloud();
+    return soundcloud();
   if (conf.yt !== "" || conf.yt !== undefined) // Value for YouTube
-      return youtube();
+    return youtube();
 }
 
 // Runtime bit for playing music via SoundCloud
@@ -75,27 +75,27 @@ function soundcloud() {
   var fST = document.getElementsByTagName('script')[0];
   tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
   fST.parentNode.insertBefore(tag, fST);
-    setTimeout(function() { // We have to wait for the API to load.
-      var widgetIframe = document.getElementById('playeri');
-      var widget = SC.Widget(widgetIframe);
-      var context = new AudioContext();
-      widget.bind(SC.Widget.Events.READY, function() {
-        widget.load(conf.sc, {
-          auto_play: true,
-          show_artwork: false,
-          show_user: false,
-          single_active: true
-        }); // Loads audio into widget
-        widget.setVolume(conf.vol); // Sets volume to whatever was configured
-        context.resume(); // Temporary solution to https://goo.gl/7K7WLu
-        widget.play(); // Ensure audio is playing when loaded
-        document.addEventListener("keypress", e => {
-          if(e.isComposing || e.keyCode === 32) {
-            widget.toggle(); // Stops music with spacebar
-          }
-        });
+  setTimeout(function() { // We have to wait for the API to load.
+    var widgetIframe = document.getElementById('playeri');
+    var widget = SC.Widget(widgetIframe);
+    var context = new AudioContext();
+    widget.bind(SC.Widget.Events.READY, function() {
+      widget.load(conf.sc, {
+        auto_play: true,
+        show_artwork: false,
+        show_user: false,
+        single_active: true
+      }); // Loads audio into widget
+      widget.setVolume(conf.vol); // Sets volume to whatever was configured
+      context.resume(); // Temporary solution to https://goo.gl/7K7WLu
+      widget.play(); // Ensure audio is playing when loaded
+      document.addEventListener("keypress", e => {
+        if(e.isComposing || e.keyCode === 32) {
+          widget.toggle(); // Stops music with spacebar
+        }
       });
-    }, 2500);      
+    });
+  }, 2500);    
 }
 
 // Runtime bit for playing music via YouTube
