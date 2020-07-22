@@ -54,3 +54,20 @@ span { color: #f62c43; }
 /* Floats for footer */
 .l { float: left; }
 .r { float: right; }
+
+/* Animated BG logic */
+.animated {
+  background: linear-gradient(270deg, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff, #ffc6ff);
+  background-size: 400% 400%;
+  animation: animatedBG 4s ease infinite;
+
+  color: #000;
+  transition: all 500ms ease;
+}
+
+/* Keyframes for animated bg */
+@keyframes animatedBG {
+    0%{background-position:0% 100%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

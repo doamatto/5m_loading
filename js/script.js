@@ -1,12 +1,12 @@
-/*jshint esversion: 6*/
-
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
   yt: "",
   sc: "https://api.soundcloud.com/playlists/1054277434",
   vol: 40, // Sets volume for everything
 
-  noheadertext: false // Disables the header text if you have a logo
+  noheadertext: false, // Disables the header text if you have a logo
+
+  bg: "animated" // Options: static, animated
 };
 
 function init() {
@@ -16,7 +16,7 @@ function init() {
   // eta(); // Displays ETA for Joining
   music(); // Runs Music Engine
   header(); // Disables the header text if you have a logo 
-  // bg(); // Runs Background Engine (DO NOT ENABLE! IT DOESN'T WORK AT ALL RIGHT NOW)
+  bg(); // Runs Background Engine (DO NOT ENABLE! IT DOESN'T WORK AT ALL RIGHT NOW)
 }
 
 function cur_time() {
@@ -128,120 +128,33 @@ function youtube() {
   };
 }
 
-/* A bunch of code for the background engine: commented to prevent bugs but to preserve
+// A bunch of code for the background engine
 function bg() {
-    // This function ensures there is data to provide to the respective music engines
-    if (conf.imgur_albumHash !== "" && conf.static_imageURL !== "") {
-        return console.error("[5mloading] You provided both an Imgur album and a static image");
-    } // Values for both sources
-    if(conf.static_imageURL !== undefined || conf.static_imageURL !== "") {
-        document.body.style.backgroundImage = `url ('${conf.static_imageURL}')`;
-    } // If a static image is provided
-    if(conf.imgur_albumHash !== undefined || conf.imgur_albumHash !== "") {
-        return imgur();
-    }
-    if(conf.static_imageURL !== undefined || conf.staticImageURL !== "" && conf.imgur_albumHashgur !== "" || conf.imgur_albumHash !== undefined) {
-        document.body.style.background = "#3b3b3b";
-        return;
-    } // No data at all
+  if(conf.bg === "animated") {
+    return animatedBG();
+  } else if(conf.bg === "static") {
+    return; // Document is written for static first
+  } else if(conf.bg !== "") {
+    console.error("[5mLoading] Invalid background type provided in config.");
+  }
 }
 
-// Runtime bit for an Imgur gallery ( AJAX ;-; )
-function imgur() {
-    var settings = {
-        async: false,
-        crossDomain: true,
-        processData: false,
-        contentType: false,
-        type: 'GET',
-        url: `https://api.imgur.com/3/album/${conf.imgur_albumHash}/images`,
-        headers: {
-            Authorization: `Client-ID ${conf.imgur_clientID}`,
-            Accept: 'application/json'
-        },
-        mimeType: 'multipart/form-data'
-    };
-    $.ajax(settings).done(function(data){
-        for(var i=0; i<data.length;i++){
-            setInterval(function() {
-                var imgIndex = 0;
-                imgIndex++;
-                if(imgIndex > data.length) { imgIndex = 1; }
-                document.body.style.backgroundImage = data[imgIndex-1].link;
-            }, 2000);
-        } // Cycles the Imgur images on the page
-    });
+function animatedBG() {
+  setTimeout(() => {
+    let elem = document.getElementsByClassName("sub");
+    for(var i = 0; i < elem.length; i++) {
+      var a = elem[i].className.split(" ");
+      if (a.indexOf("dark-text") == -1) {
+        elem[i].className += " " + "dark-text";
+      }
+    }
+    document.body.classList.add("animated");
+    return true; // Reports a pass
+  }, 10);
 }
 
-// Runtime bit for a dynamic slideshow based off the time of day (scheduled for v0.2)
-function timebased_slideshow() {
-    var d = new Date(); // Init time
-    var stat; // Status of the day
-    // Morning timing
-    var mStart = '0000';
-    var mEnd = '1159';
-    // Afternoon timing
-    var aStart = '1200';
-    var aEnd = '1659';
-    // Evening timing
-    var eStart = '1700';
-    var eEnd = '2359';
-    // Time formatting
-    var f;
-    if (d.getHours() <= 9) {
-        var eStr = d.getHours().toString();
-        f = eStr.replace(/^/,'0');
-    } else { f = d.getHours(); } // Check if past 9, prepend 0 if not.
-    var now = f + "" + d.getMinutes(); // Set cur_time
-    // Check to see timing
-    if (now <= mEnd && now >= mStart) {
-        stat = "m";
-    } else if (now <= aEnd && now >= aStart ) {
-        stat = "a";
-    } else if (now <= eEnd && now >= eStart ) {
-        stat = "e";
-    }
-
-    var slideIndex = 0;
-    carousel();
-
-    switch(stat) {
-        case m: // Morning slideshow
-            conf.morning_photos.forEach(addToCarousel(conf.afternoon_photos));
-            carousel();
-            break;
-        case a: // Afternoon slideshow
-            conf.afternoon_photos.forEach(addToCarousel(conf.afternoon_photos));
-            carousel();
-            break;
-        case e: // Evening slideshow
-            conf.evening_photos.forEach(addToCarousel(conf.afternoon_photos));
-            carousel();
-            break;
-        default: // Just in case :)
-            console.error("Something bad happened.");
-            break;
-    }
-
-    function addToCarousel(img) {
-        // Adopted from the player scripts :)
-        var imgS = document.createElement('img');
-        var fST = document.getElementById('bg');
-        imgS.src = img;
-        fST.insertBefore(imgS, fST);
-    }
-
-    // Automatic slide system
-    function carousel() {
-        var i;
-        var x = document.getElementsByClassName("slide");
-        for(i=0;i<x.length;i++) {
-            x[i].style.display = "none";
-        }
-        slideIndex++;
-        if(slideIndex>x.length) { slideIndex = 1; }
-        x[slideIndex-1].style.display = "block";
-        setTimeout(carousel, 5000); // Keep repeating it
-    }
-}
-*/
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.style.opacity = "1";
+  init()
+  if (document.getElementById("server-logo").naturalHeight === 0) return logo()
+}); // Hides page until loaded
