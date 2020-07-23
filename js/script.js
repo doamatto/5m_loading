@@ -132,12 +132,14 @@ function youtube() {
 
 // A bunch of code for the background engine
 function bg() {
-  if(conf.bg === "animated") {
-    return animatedBG();
-  } else if(conf.bg === "static") {
-    return; // Document is written for static first
-  } else if(conf.bg !== "") {
-    console.error("[5mLoading] Invalid background type provided in config.");
+  switch(conf.bg) {
+    case "animated":
+      animatedBG();
+      break;
+    case "static":
+    case "simple":
+    default:
+      break;
   }
 }
 
