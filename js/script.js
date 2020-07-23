@@ -6,11 +6,15 @@ var conf = {
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "simple", // Options: static, animated
+  bg: "rainbow", // Options: static, animated
   carouselImages: [
-    "",
-    "",
-
+    "https://files.catbox.moe/vpqvxx.jpg",
+    "https://files.catbox.moe/pzz9cp.jpg",
+    "https://files.catbox.moe/mq6k5x.png",
+    "https://files.catbox.moe/bh9yy0.png",
+    "https://files.catbox.moe/205gkr.jpg",
+    "https://files.catbox.moe/d49sa5.jpg",
+    "https://files.catbox.moe/efys1k.png"
   ]
 };
 
