@@ -28,21 +28,25 @@ function init() {
   bg(); // Runs Background Engine (DO NOT ENABLE! IT DOESN'T WORK AT ALL RIGHT NOW)
 }
 
+// Runtime util for what time it is
 function cur_time() {
   var dateData = new Date(),
-    h = dateData.getHours(),
-    m = dateData.getMinutes();
+    h = addZero(dateData.getHours()),
+    m = addZero(dateData.getMinutes());
   document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   setInterval(function() {
-    var dateData = new Date(),
-      h = dateData.getHours(),
-      m = dateData.getMinutes();
-    if (m === "0") { m === "00" }
-    if (m <= "9") { m === `0${m}`}
+    var d = new Date(),
+      h = addZero(dateData.getHours()),
+      m = addZero(dateData.getMinutes());
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
 
+function addZero(i) {
+  if (i < 10) { return i = "0" + i; }
+}
+
+// Runtime util for the time elapsed
 function elapsed() {
   setInterval(function() {
     var a, b;
