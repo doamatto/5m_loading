@@ -65,11 +65,13 @@ function logo() {
   document.getElementsByClassName('server-name')[0].style.display = "block";
 }
 
+// Runtime check to remove the header where wanted
 function header() {
   if (!conf.noheadertext) return; // Cancels if not enabled
   document.getElementsByClassName('header')[0].style.display = "none";
 }
 
+// Runtime util for the music engine
 function music() {
   // This function ensures there is data to provide to the respective music engines
   if (conf.yt === "" && conf.sc === "") // No values for either source
