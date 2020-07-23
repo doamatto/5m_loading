@@ -6,7 +6,7 @@ var conf = {
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "animated" // Options: static, animated
+  bg: "simple" // Options: static, animated
 };
 
 function init() {
