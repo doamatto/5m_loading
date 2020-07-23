@@ -58,7 +58,7 @@ function logo() {
 }
 
 function header() {
-  if(!conf.noheadertext) return; // Cancels if not enabled
+  if (!conf.noheadertext) return; // Cancels if not enabled
   document.getElementsByClassName('header')[0].style.display = "none";
 }
 
@@ -80,11 +80,11 @@ function soundcloud() {
   var fST = document.getElementsByTagName('script')[0];
   tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
   fST.parentNode.insertBefore(tag, fST);
-  setTimeout(function() { // We have to wait for the API to load.
+  setTimeout(() => { // We have to wait for the API to load.
     var widgetIframe = document.getElementById('playeri');
     var widget = SC.Widget(widgetIframe);
     var context = new AudioContext();
-    widget.bind(SC.Widget.Events.READY, function() {
+    widget.bind(SC.Widget.Events.READY, () => {
       widget.load(conf.sc, {
         auto_play: true,
         show_artwork: false,
@@ -94,7 +94,7 @@ function soundcloud() {
       widget.setVolume(conf.vol); // Sets volume to whatever was configured
       context.resume(); // Temporary solution to https://goo.gl/7K7WLu
       widget.play(); // Ensure audio is playing when loaded
-      document.addEventListener("keypress", e => {
+      document.addEventListener("keypress", (e) => {
         if(e.isComposing || e.keyCode === 32) {
           widget.toggle(); // Stops music with spacebar
         }
@@ -109,7 +109,7 @@ function youtube() {
   var fST = document.getElementsByTagName('script')[0];
   tag.src = "https://www.youtube.com/iframe_api";
   fST.parentNode.insertBefore(tag, fST);
-  window.onYouTubePlayerAPIReady = function() {
+  window.onYouTubePlayerAPIReady = () => {
     var p = true;
     var player = new YT.Player("player", {
       height: '1',
@@ -123,8 +123,8 @@ function youtube() {
         listType: "playlist"
       }
     });
-    document.addEventListener("keypress", e => {
-      if(e.isComposing || e.keyCode === 32) {
+    document.addEventListener("keypress", (e) => {
+      if (e.isComposing || e.keyCode === 32) {
         p = !p;
         if (!p)
           player.pauseVideo(); // Stops music with spacebar
@@ -137,9 +137,12 @@ function youtube() {
 
 // A bunch of code for the background engine
 function bg() {
-  switch(conf.bg) {
+  switch (conf.bg) {
   case "animated":
     animatedBG();
+    break;
+  case "carousel":
+    carousel();
     break;
   case "static":
   case "simple":
