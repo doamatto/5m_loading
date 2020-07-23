@@ -133,13 +133,13 @@ function youtube() {
 // A bunch of code for the background engine
 function bg() {
   switch(conf.bg) {
-    case "animated":
-      animatedBG();
-      break;
-    case "static":
-    case "simple":
-    default:
-      break;
+  case "animated":
+    animatedBG();
+    break;
+  case "static":
+  case "simple":
+  default:
+    break;
   }
 }
 
