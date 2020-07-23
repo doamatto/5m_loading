@@ -35,20 +35,18 @@ function cur_time() {
     m = addZero(dateData.getMinutes());
   document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   setInterval(function() {
-    var d = new Date(),
+    var dateData = new Date(),
       h = addZero(dateData.getHours()),
       m = addZero(dateData.getMinutes());
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
 
-function addZero(i) {
-  if (i < 10) { return i = "0" + i; }
-}
+function addZero(i) { if (i < 10) { return i = "0" + i; } }
 
 // Runtime util for the time elapsed
 function elapsed() {
-  setInterval(function() {
+  setInterval(() => {
     var a, b;
     var e = performance.now(); // Get time every second
     var tDiff = Math.round(e / 1000); // Bring into seconds from ms
