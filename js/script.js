@@ -6,7 +6,12 @@ var conf = {
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "simple" // Options: static, animated
+  bg: "simple", // Options: static, animated
+  carouselImages: [
+    "",
+    "",
+
+  ]
 };
 
 function init() {
@@ -143,10 +148,22 @@ function bg() {
   }
 }
 
+function carousel() {
+  var imgs = conf.bg.carouselImages;
+  if (!Array.isArray(array) && !array.length) return console.error("[5mLoading] You selected the carousel image option, but never provided pictures.");
+  for (var i = 0; i < imgs.length; i++) {
+    document.body.backgroundImage = imgs[i];
+    setTimeout(() => {
+      document.body.classList.add('fade'); // helps fade between pictures
+    }, 2000); // Wait 2 seconds before changing pictures
+    if (i >= imgs.length) { i = 0; }
+  }
+}
+
 function animatedBG() {
   setTimeout(() => {
     let elem = document.getElementsByClassName("sub");
-    for(var i = 0; i < elem.length; i++) {
+    for (var i = 0; i < elem.length; i++) {
       var a = elem[i].className.split(" ");
       if (a.indexOf("dark-text") == -1) {
         elem[i].className += " " + "dark-text";
