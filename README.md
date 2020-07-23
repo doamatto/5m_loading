@@ -15,8 +15,14 @@ Put into even more grave detail, all of this is planned and most of it hasn't be
 ### Installing
 Installation of 5M Loading (and just about any other FiveM addon) is super simple. Add the `5m_loading` folder to the resources folder (usually under `server-data/resources`or similar). Then, edit your `server.cfg` file to have `start 5m_loading` (use `ensure` instead of `start` if you don't want the server to work without the loading screen). If you're installing from source, copy all of this (you can exclude the `.github/` folder and the `.gitignore` and `README.md` files if you really want to; everything else is important) into a folder titled "5m_loading." Then, follow the instructions from before.
 
+### Screenshots
+There are a good chunk of themes baked into 5m_loading, here are just a few.
+
+![Preview of the 'Simple' theme](https://files.catbox.moe/fc01j9.png)
+![Preview of the 'Rainbow' theme](.github/rainbow.gif)
+
 ### Features Coming Soon
-To get v0.1 out (a bit late, sorry again!), I had to gut these features (they'll be in v0.2):
+To get v0.1 out (a bit late, sorry again!), I had to gut these features (they'll be in v0.2™):
 - **Display a video, GIF, or a slideshow while the game loads** This is being held back mostly by Imgur's API. I don't want to use it. I'm doing my best to find a good alternative but am still empty handed. Please bare with me on this one.
 
 ### Acknowledgements
