@@ -20,9 +20,16 @@ body {
   text-align: center; /* Centres the image */
   z-index: 2; /* Used in the future for BGs */
 }
-#bg { z-index: 1; } /* Z-index is used for bg overlay */
 
-#player, #playeri { display: none; } /* Hides the YT and SC players */
+#bg { z-index: 1; } /* Z-index is used for bg overlay */
+#bg > img {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+}
+
+#player,
+#playeri { display: none; } /* Hides the YT and SC players */
 
 .server-logo { border: none; }
 

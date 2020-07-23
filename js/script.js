@@ -159,18 +159,26 @@ function bg() {
   }
 }
 
-// Runtime util for the carousel background
+// Runtime util for loading carousel images
+var index, i = 0;
 function carousel() {
-  setTimeout(() => {
-    var imgs = conf.carouselImages;
-    var index = 0;
-    if (imgs.length === 0 || !imgs || imgs === undefined) return console.error("[5mLoading] You selected the carousel image option, but never provided pictures.");
-    for (i = 0; i < imgs.length; i++) {
-      index++;
-      document.body.style.backgroundImage = `url('${imgs[i]}')`;
-      if (index >= imgs.length || imgs[i] === undefined) { i = 0; }
+  var imgs = conf.carouselImages;
+  for (i = 0; i < imgs.length; i+1) {
+    var img = new Image();
+    img.src = imgs[i];
+    document.getElementById('bg').appendChild(img);
+    document.getElementById('bg').childNodes[i].className += "bg-img";
+  }
+  setInterval(() => {
+    var elem = document.getElementById('bg').childNodes;
+    console.log(elem);
+    for(i = 0; i < elem.length; i++) {
+      elem[i].style.display = "none";
     }
-  }, 2000);
+    index++;
+    if(index > elem.length) { index = 1; }
+    elem[index-1].style.display = "block";
+  }, 2000)
 }
 
 // Runtime util for the rainbow background loading
