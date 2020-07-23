@@ -7,8 +7,7 @@ var conf = {
   noheadertext: false, // Disables the header text if you have a logo
 
   bg: "carousel", // Options: static, animated
-  carouselImages:
-  [
+  carouselImages: [
     "https://files.catbox.moe/vpqvxx.jpg",
     "https://files.catbox.moe/pzz9cp.jpg",
     "https://files.catbox.moe/mq6k5x.png",
