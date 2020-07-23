@@ -84,10 +84,6 @@ function music() {
 
 // Runtime bit for playing music via SoundCloud
 function soundcloud() {
-  var tag = document.createElement('script');
-  var fST = document.getElementsByTagName('script')[0];
-  tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
-  fST.parentNode.insertBefore(tag, fST);
   setTimeout(() => { // We have to wait for the API to load.
     var widgetIframe = document.getElementById('playeri');
     var widget = SC.Widget(widgetIframe);
