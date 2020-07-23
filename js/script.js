@@ -138,31 +138,34 @@ function youtube() {
 // A bunch of code for the background engine
 function bg() {
   switch (conf.bg) {
-  case "animated":
-    animatedBG();
-    break;
-  case "carousel":
-    carousel();
-    break;
-  case "static":
-  case "simple":
-  default:
-    break;
+    case "rainbow":
+      animatedBG();
+      break;
+    case "carousel":
+      carousel();
+      break;
+    case "static":
+    case "simple":
+    default:
+      break;
   }
 }
 
+// Runtime util for the carousel background
 function carousel() {
-  var imgs = conf.bg.carouselImages;
-  if (!Array.isArray(array) && !array.length) return console.error("[5mLoading] You selected the carousel image option, but never provided pictures.");
-  for (var i = 0; i < imgs.length; i++) {
-    document.body.backgroundImage = imgs[i];
-    setTimeout(() => {
-      document.body.classList.add('fade'); // helps fade between pictures
-    }, 2000); // Wait 2 seconds before changing pictures
-    if (i >= imgs.length) { i = 0; }
-  }
+  setTimeout(() => {
+    var imgs = conf.carouselImages;
+    var index = 0;
+    if (imgs.length === 0 || !imgs || imgs === undefined) return console.error("[5mLoading] You selected the carousel image option, but never provided pictures.");
+    for (i = 0; i < imgs.length; i++) {
+      index++;
+      document.body.style.backgroundImage = `url('${imgs[i]}')`;
+      if (index >= imgs.length || imgs[i] === undefined) { i = 0; }
+    }
+  }, 2000);
 }
 
+// Runtime util for the rainbow background loading
 function animatedBG() {
   setTimeout(() => {
     let elem = document.getElementsByClassName("sub");
