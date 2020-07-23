@@ -1,13 +1,14 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
   yt: "",
-  sc: "https://api.soundcloud.com/playlists/1054277434",
+  sc: "https://api.soundcloud.com/tracks/815870209",
   vol: 40, // Sets volume for everything
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "rainbow", // Options: static, animated
-  carouselImages: [
+  bg: "carousel", // Options: static, animated
+  carouselImages:
+  [
     "https://files.catbox.moe/vpqvxx.jpg",
     "https://files.catbox.moe/pzz9cp.jpg",
     "https://files.catbox.moe/mq6k5x.png",
