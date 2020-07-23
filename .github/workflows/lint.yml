@@ -16,8 +16,8 @@ jobs:
       
     - name: js-lint
       run: |
-        npm i jshint -g
-        jshint js/script.js
+        npm i eslint -g
+        eslint js/script.js
     - name: css-lint
       run: |
         npm i csslint -g
