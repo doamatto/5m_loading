@@ -201,6 +201,8 @@ function animatedBG() {
 
 window.addEventListener("DOMContentLoaded", () => {
   document.body.style.opacity = "1";
-  init()
-  if (document.getElementById("server-logo").naturalHeight === 0) return logo()
+  init();
+  if (document.getElementById("server-logo").naturalHeight === 0) {
+    return logo();
+  }
 }); // Hides page until loaded
