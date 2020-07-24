@@ -152,10 +152,10 @@ function youtube() {
         p = !p;
         if (!p)
           player.pauseVideo(); // Stops music with spacebar
-          document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
+        document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
         if (p)
           player.playVideo();
-          document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
+        document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
       }
     });
   };
