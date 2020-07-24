@@ -30,19 +30,26 @@ function init() {
 
 // Runtime util for what time it is
 function cur_time() {
-  var dateData = new Date(),
-    h = addZero(dateData.getHours()),
-    m = addZero(dateData.getMinutes());
+  var dd = new Date(),
+    h = addZero(dd.getHours()),
+    m = addZero(dd.getMinutes());
   document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   setInterval(function() {
-    var dateData = new Date(),
-      h = addZero(dateData.getHours()),
-      m = addZero(dateData.getMinutes());
+    var dd = new Date(),
+      h = addZero(dd.getHours()),
+      m = addZero(dd.getMinutes());
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
 
-function addZero(i) { if (i < 10) { return i = "0" + i; } }
+// Runtime for adding zeroes to times that are missing zeroes
+function addZero(i) {
+  if (i <= 9) {
+    return `0${i}`;
+  } else {
+    return i;
+  }
+}
 
 // Runtime util for the time elapsed
 function elapsed() {
