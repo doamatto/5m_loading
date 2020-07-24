@@ -55,10 +55,7 @@ body {
   color: #d4d4d4;
 	font-size: 1.5em;
 } /* subheader */
-
-.subsub {
- font-size: 1em;
-} /* subheader for the subheader */
+.subsub { font-size: 1em; } /* subheader for the subheader */
 
 .dark-text { color: #3b3b3b; }
 
