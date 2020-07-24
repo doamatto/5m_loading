@@ -189,19 +189,17 @@ function carousel() {
     document.getElementById('bg').appendChild(img);
   } // TODO: find out why this has double the elements it should
   carouselLogic();
-  setInterval(() => { carouselLogic(); }, 5000);
+  setInterval(() => { carouselLogic(); }, 6000);
 }
 
 function carouselLogic() {
   var elem = document.getElementById('bg').childNodes;
   for (let i = 0; i < elem.length; i++) {
-    elem[i].style.opacity = "0";
     elem[i].style.display = "none";
   }
   index++;
   if(index > elem.length) { index = 1; }
   elem[index-1].style.display = "block";
-  elem[index-1].style.opacity = "1"
 }
 
 // Runtime util for the rainbow background loading
