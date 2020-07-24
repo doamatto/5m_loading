@@ -169,6 +169,7 @@ function bg() {
 var index = 0;
 function carousel() {
   var imgs = conf.carouselImages;
+  document.getElementById('app').classList.add("carousel");
   for (let i = 0; i < imgs.length; i++) {
     var img = document.createElement('img');
     img.src = imgs[i];
