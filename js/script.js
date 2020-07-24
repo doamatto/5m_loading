@@ -113,9 +113,7 @@ function soundcloud() {
       var a = false; // Used for checking mute
       document.addEventListener("keypress", (e) => {
         if(e.isComposing || e.keyCode === 32) {
-          console.log(a);
           a = !a;
-          console.log(a);
           if (a === true) {
             document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
           } else if (a === false) {
