@@ -109,8 +109,18 @@ function soundcloud() {
       widget.setVolume(conf.vol); // Sets volume to whatever was configured
       context.resume(); // Temporary solution to https://goo.gl/7K7WLu
       widget.play(); // Ensure audio is playing when loaded
+      document.getElementById("mute").style.display = "block";
+      var a = false; // Used for checking mute
       document.addEventListener("keypress", (e) => {
         if(e.isComposing || e.keyCode === 32) {
+          console.log(a);
+          a = !a;
+          console.log(a);
+          if (a === true) {
+            document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
+          } else if (a === false) {
+            document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
+          }
           widget.toggle(); // Stops music with spacebar
         }
       });
@@ -138,13 +148,16 @@ function youtube() {
         listType: "playlist"
       }
     });
+    document.getElementById("mute").style.display = "block";
     document.addEventListener("keypress", (e) => {
       if (e.isComposing || e.keyCode === 32) {
         p = !p;
         if (!p)
           player.pauseVideo(); // Stops music with spacebar
+          document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
         if (p)
           player.playVideo();
+          document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
       }
     });
   };

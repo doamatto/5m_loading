@@ -59,6 +59,7 @@ body {
 	font-size: 1.5em;
 } /* subheader */
 .subsub { font-size: 1em; } /* subheader for the subheader */
+#mute { display: none; }
 
 .dark-text { color: #3b3b3b; }
 
