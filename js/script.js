@@ -114,7 +114,7 @@ function soundcloud() {
         }
       });
     });
-  }, 100);
+  }, 500);
 }
 
 // Runtime bit for playing music via YouTube
