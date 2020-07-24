@@ -21,10 +21,13 @@ body {
 }
 
 .carousel {
+  padding-top: 1vh;
   margin-top: -200px;
   z-index: 5; /* Used in the future for BGs */
   background: #00000075;
 }
+
+.carousel > #footer { margin-top: 1vh; margin-bottom: 0; }
 
 #centre { 
   margin: auto;
