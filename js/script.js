@@ -91,6 +91,9 @@ function music() {
 
 // Runtime bit for playing music via SoundCloud
 function soundcloud() {
+  var tag = document.createElement('script');
+  tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
+  document.head.appendChild(tag);
   setTimeout(() => { // We have to wait for the API to load.
     var widgetIframe = document.getElementById('playeri');
     var widget = SC.Widget(widgetIframe);
@@ -111,7 +114,7 @@ function soundcloud() {
         }
       });
     });
-  }, 2500);
+  }, 100);
 }
 
 // Runtime bit for playing music via YouTube
