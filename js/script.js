@@ -4,6 +4,9 @@ var conf = {
   sc: "https://api.soundcloud.com/tracks/815870209",
   vol: 40, // Sets volume for everything
 
+  serverName: "Your Server Name",
+  serverFooter: "A certified hood classic.",
+
   noheadertext: false, // Disables the header text if you have a logo
 
   bg: "carousel", // Options: static, animated, carousel
@@ -26,6 +29,7 @@ function init() {
   music(); // Runs Music Engine
   header(); // Disables the header text if you have a logo 
   bg(); // Runs Background Engine
+  meta(); // Adds user-meta onto page
   // loadingbar(); // Runs the loading bar (doesnt work.. yet) (will break if in browser)
 }
 
@@ -236,6 +240,11 @@ function loadingbar() {
   window.addEventListener('message', (e) => {
     (handlers[e.data.eventName] || function() {})(e.data);
   }); // Event listener for loading bar
+}
+
+function meta() {
+  document.getElementsByClassName('server-name')[0].innerHTML = conf.serverName;
+  document.getElementById("footer-alt").innerHTML = conf.serverFooter
 }
 
 window.addEventListener("DOMContentLoaded", () => {
