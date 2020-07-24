@@ -20,12 +20,13 @@ var conf = {
 
 function init() {
   // To disable music, prepend '//' to 'music();' to comment the line.
-  cur_time(); // Displays Current Time (not tested)
-  elapsed(); // Displays Elapsed Time for Joining (not tested)
-  // eta(); // Displays ETA for Joining
+  cur_time(); // Displays Current Time
+  elapsed(); // Displays Elapsed Time for Joining
+  // eta(); // Displays ETA for Joining (doesnt work.. yet) (will break if in browser)
   music(); // Runs Music Engine
   header(); // Disables the header text if you have a logo 
-  bg(); // Runs Background Engine (DO NOT ENABLE! IT DOESN'T WORK AT ALL RIGHT NOW)
+  bg(); // Runs Background Engine
+  // loadingbar(); // Runs the loading bar (doesnt work.. yet) (will break if in browser)
 }
 
 // Runtime util for what time it is
