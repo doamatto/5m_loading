@@ -72,13 +72,13 @@ function elapsed() {
 // Runtime bit in case the logo is missing
 function logo() {
   document.getElementsByClassName('server-logo')[0].style.display = "none";
-  document.getElementsByClassName('server-name')[0].style.display = "block";
+  document.getElementById('server-name').style.display = "block";
 }
 
 // Runtime check to remove the header where wanted
 function header() {
   if (!conf.noheadertext) return; // Cancels if not enabled
-  document.getElementsByClassName('header')[0].style.display = "none";
+  document.getElementById('server-name').style.display = "none";
 }
 
 // Runtime util for the music engine
@@ -243,7 +243,7 @@ function loadingbar() {
 }
 
 function meta() {
-  document.getElementsByClassName('server-name')[0].innerHTML = conf.serverName;
+  document.getElementById('server-name').innerHTML = conf.serverName;
   document.getElementById("footer-alt").innerHTML = conf.serverFooter
 }
 
