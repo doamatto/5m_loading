@@ -27,3 +27,5 @@ To get v0.1 out (a bit late, sorry again!), I had to gut these features (they'll
 
 ### Acknowledgements
 This was inspired from the lack of FiveM loading screens that cut it for me. I wanted to have something simple and clean that I could run on my private server I play with my mates on. This seemed to be the only way. Special thanks to [Nick](http://nicolassaad.com/) for open-sourcing his [cool time engine](https://github.com/nicolassaad/timely-greeting). I used it for properly doing the current time and ported it so it wouldn't need AJAX. Thanks also to [Rishi](https://github.com/rveerepalli) for helping debug some of the music issues and help simplify chunks.
+
+- [FiveM Forum Link](https://forum.cfx.re/t/release-5mloading-yet-another-loading-screen/1459768)
