@@ -2,14 +2,14 @@
 var conf = {
   yt: "",
   sc: "https://api.soundcloud.com/tracks/815870209",
-  vol: 40, // Sets volume for everything
+  vol: 30, // Sets volume for everything
 
   serverName: "Your Server Name",
   serverFooter: "A certified hood classic.",
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "carousel", // Options: static, animated, carousel
+  bg: "carousel", // Options: static, animated, (legacy)carousel
   carouselImages: [
     "https://files.catbox.moe/vpqvxx.jpg",
     "https://files.catbox.moe/pzz9cp.jpg",
