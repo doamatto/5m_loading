@@ -199,11 +199,15 @@ function carousel() {
 function carouselLogic() {
   var elem = document.getElementById('bg').childNodes;
   for (let i = 0; i < elem.length; i++) {
-    elem[i].style.display = "none";
+    elem[i].classList.add("fade-out");
+    setTimeout(() => {elem[i].style.display = "none";},1000);
+    elem[i].classList.remove("fade-in");
+    setTimeout(() => {elem[i].classList.remove("fade-out");}, 1000);
   }
   index++;
   if(index > elem.length) { index = 1; }
-  elem[index-1].style.display = "block";
+  setTimeout(() => {elem[index-1].style.display = "block";}, 1000);
+  setTimeout(() => {elem[index-1].classList.add("fade-in");}, 100);
 }
 
 // Runtime util for the rainbow background loading
