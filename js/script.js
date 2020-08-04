@@ -9,7 +9,7 @@ var conf = {
 
   noheadertext: false, // Disables the header text if you have a logo
 
-  bg: "carousel", // Options: static, animated, (legacy)carousel
+  bg: "carousel", // Options: static, animated, carousel
   carouselImages: [
     "https://files.catbox.moe/vpqvxx.jpg",
     "https://files.catbox.moe/pzz9cp.jpg",
@@ -195,7 +195,6 @@ function carousel() {
   carouselLogic();
   setInterval(() => { carouselLogic(); }, 6000);
 }
-
 function carouselLogic() {
   var elem = document.getElementById('bg').childNodes;
   for (let i = 0; i < elem.length; i++) {
