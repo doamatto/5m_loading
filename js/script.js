@@ -191,7 +191,7 @@ function carousel() {
     var img = document.createElement('img');
     img.src = imgs[i];
     document.getElementById('bg').appendChild(img);
-  } // TODO: find out why this has double the elements it should
+  }
   carouselLogic();
   setInterval(() => { carouselLogic(); }, 6000);
 }
