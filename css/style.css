@@ -27,6 +27,17 @@ body {
   background: #00000075;
 }
 
+.fade-in { animation: fadeIn ease 1000ms; }
+.fade-out { animation: fadeOut ease 1000ms; }
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+@keyframes fadeOut {
+  0% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
 .carousel > #footer { margin-top: 1vh; margin-bottom: 0; }
 
 #centre { 
