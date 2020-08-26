@@ -21,10 +21,6 @@ There are a good chunk of themes baked into 5m_loading, here are just a few.
 ![Preview of the 'Simple' theme](https://files.catbox.moe/fc01j9.png)
 ![Preview of the 'Rainbow' theme](.github/rainbow.gif)
 
-### Features Coming Soon
-To get v0.1 out (a bit late, sorry again!), I had to gut these features (they'll be in v0.2™):
-- **Display a video, GIF, or a slideshow while the game loads** This is being held back mostly by Imgur's API. I don't want to use it. I'm doing my best to find a good alternative but am still empty handed. Please bare with me on this one.
-
 ### Acknowledgements
 This was inspired from the lack of FiveM loading screens that cut it for me. I wanted to have something simple and clean that I could run on my private server I play with my mates on. This seemed to be the only way. Special thanks to [Nick](http://nicolassaad.com/) for open-sourcing his [cool time engine](https://github.com/nicolassaad/timely-greeting). I used it for properly doing the current time and ported it so it wouldn't need AJAX. Thanks also to [Rishi](https://github.com/rveerepalli) for helping debug some of the music issues and help simplify chunks.
 
