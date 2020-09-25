@@ -8,8 +8,6 @@ Put in more detail, 5M Loading is a feature-rich, customizable, and lightweight 
 - Easy to customize footer text
 - Add a logo to your loading screen
 
-You can see the progress on [this Trello board.](https://trello.com/b/aePOCnqI)
-
 Put into even more grave detail, all of this is planned and most of it hasn't been done yet. I'm only now starting to dabble in FiveM modding. If I like it, you can expect a bit more of this in future, as well as for other games.
 
 ### Installing
