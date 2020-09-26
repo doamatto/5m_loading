@@ -94,11 +94,15 @@ function music() {
     return youtube();
 }
 
+function loadJS(url) {
+  var t = document.createElement('script');
+  t.src = url;
+  return document.head.appendChild(t);
+}
+
 // Runtime bit for playing music via SoundCloud
 function soundcloud() {
-  var tag = document.createElement('script');
-  tag.src = "https://w.soundcloud.com/player/api.js"; // Add SC Widget API
-  document.head.appendChild(tag);
+  loadJS("https://w.soundcloud.com/player/api.js"); // Load SC Widget API
   setTimeout(() => { // We have to wait for the API to load.
     var widgetIframe = document.getElementById('playeri');
     var widget = SC.Widget(widgetIframe);
@@ -132,10 +136,7 @@ function soundcloud() {
 
 // Runtime bit for playing music via YouTube
 function youtube() {
-  var tag = document.createElement('script');
-  var fST = document.getElementsByTagName('script')[0];
-  tag.src = "https://www.youtube.com/iframe_api";
-  fST.parentNode.insertBefore(tag, fST);
+  loadJS("https://www.youtube.com/iframe_api"); // Load YT Embed API
   window.onYouTubePlayerAPIReady = () => {
     var p = true;
     var player = new YT.Player("player", {
