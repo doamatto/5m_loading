@@ -12,13 +12,13 @@ var conf = {
 
   bg: "carousel", // Options: static, animated, carousel
   carouselImages: [
-    "https://files.catbox.moe/vpqvxx.jpg",
-    "https://files.catbox.moe/pzz9cp.jpg",
-    "https://files.catbox.moe/mq6k5x.png",
-    "https://files.catbox.moe/bh9yy0.png",
-    "https://files.catbox.moe/205gkr.jpg",
-    "https://files.catbox.moe/d49sa5.jpg",
-    "https://files.catbox.moe/efys1k.png"
+  "https://files.catbox.moe/vpqvxx.jpg",
+  "https://files.catbox.moe/pzz9cp.jpg",
+  "https://files.catbox.moe/mq6k5x.png",
+  "https://files.catbox.moe/bh9yy0.png",
+  "https://files.catbox.moe/205gkr.jpg",
+  "https://files.catbox.moe/d49sa5.jpg",
+  "https://files.catbox.moe/efys1k.png"
   ]
 };
 
@@ -37,13 +37,13 @@ function init() {
 // Runtime util for what time it is
 function cur_time() {
   var dd = new Date(),
-    h = addZero(dd.getHours()),
-    m = addZero(dd.getMinutes());
+  h = addZero(dd.getHours()),
+  m = addZero(dd.getMinutes());
   document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   setInterval(function() {
     var dd = new Date(),
-      h = addZero(dd.getHours()),
-      m = addZero(dd.getMinutes());
+    h = addZero(dd.getHours()),
+    m = addZero(dd.getMinutes());
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
@@ -122,36 +122,36 @@ function soundcloud() {
         var song_indexes = new Array();
         var current_index = 0;
         widget.bind(SC.Widget.Events.READY, function() {
-            widget.bind(SC.Widget.Events.FINISH, function() {
-                play_next_shuffled_song();
-            });
+          widget.bind(SC.Widget.Events.FINISH, function() {
+            play_next_shuffled_song();
+          });
 
-            widget.getSounds(function(sounds) {
-                create_shuffled_indexes(sounds.length);
-                play_next_shuffled_song();
-            });
+          widget.getSounds(function(sounds) {
+            create_shuffled_indexes(sounds.length);
+            play_next_shuffled_song();
+          });
         });
         function play_next_shuffled_song() {
-            if (current_index >= song_indexes.length) {
-                current_index = 0;
-            }
-            var track_number = song_indexes[current_index];
-            current_index++;
-            widget.skip(track_number);
-            console.log(track_number);
+          if (current_index >= song_indexes.length) {
+            current_index = 0;
+          }
+          var track_number = song_indexes[current_index];
+          current_index++;
+          widget.skip(track_number);
+          console.log(track_number);
         }
 
         function create_shuffled_indexes (num_songs) {
-            for (var i=0;i<num_songs;i++) {
-                song_indexes.push(i);
-            }
-            song_indexes = shuffle(song_indexes);
+          for (var i=0;i<num_songs;i++) {
+            song_indexes.push(i);
+          }
+          song_indexes = shuffle(song_indexes);
         }
 
         //+ Jonas Raoni Soares Silva
         //@ http://jsfromhell.com/array/shuffle [v1.0]
         function shuffle(o){ //v1.0
-            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+          for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
             return o;
         };
       }
@@ -214,15 +214,15 @@ function youtube() {
 // A bunch of code for the background engine
 function bg() {
   switch (conf.bg) {
-  case "rainbow":
+    case "rainbow":
     animatedBG();
     break;
-  case "carousel":
+    case "carousel":
     carousel();
     break;
-  case "static":
-  case "simple":
-  default:
+    case "static":
+    case "simple":
+    default:
     break;
   }
 }
