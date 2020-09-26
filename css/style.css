@@ -2,7 +2,6 @@
 * { margin: auto; }
 html, body {
   background: #2f2f2f; /* Failback BG in case JS doesn't work or no background is used */
-  font-family: 'Inter', sans-serif;
   height: 100%;
 }
 body {

@@ -10,6 +10,9 @@ var conf = {
 
   noheadertext: false, // Disables the header text if you have a logo
 
+  fontUrl: "https://cdn.doamatto.xyz/inter.min.css", // Needs to be CSS stylesheet
+  fontName: "'Inter var experimental', sans-serif", // Needs to be the name of the font on the stylesheet
+
   bg: "carousel", // Options: static, animated, carousel
   carouselImages: [
     "https://files.catbox.moe/vpqvxx.jpg",
@@ -35,7 +38,18 @@ function init() {
   header(); // Disables the header text if you have a logo 
   bg(); // Runs Background Engine
   meta(); // Adds user-meta onto page
+  font();
   // loadingbar(); // Runs the loading bar (doesnt work.. yet) (will break if in browser)
+}
+
+//Runtime util for loading the font
+function font() {
+  var t = document.createElement('link');
+  t.rel = "stylesheet";
+  t.href = conf.fontUrl;
+  document.head.appendChild(t);
+  document.body.style.fontFamily = conf.fontName;
+  return;
 }
 
 // Runtime util for what time it is
