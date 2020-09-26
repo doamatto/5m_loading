@@ -148,9 +148,11 @@ function youtube() {
         enablejsapi: 1,
         fs: 0,
         list: conf.yt,
-        listType: "playlist"
+        listType: "playlist",
+        loop: 1
       }
     });
+    if(conf.shuffle) { player.setShuffle(true); }
     document.getElementById("mute").style.display = "block";
     document.addEventListener("keypress", (e) => {
       if (e.isComposing || e.keyCode === 32) {
