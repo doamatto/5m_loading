@@ -199,7 +199,7 @@ function youtube() {
         loop: 1
       }
     });
-    if(conf.shuffle) { player.setShuffle(true); }
+    if(conf.shuffle) { player.setShuffle(true); } // Shuffles music if enabled
     document.getElementById("mute").style.display = "block";
     document.addEventListener("keypress", (e) => {
       if (e.isComposing || e.keyCode === 32) {
