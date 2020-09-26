@@ -112,10 +112,53 @@ function soundcloud() {
         single_active: true
       }); // Loads audio into widget
       widget.setVolume(conf.vol); // Sets volume to whatever was configured
+
       context.resume(); // Temporary solution to https://goo.gl/7K7WLu
       widget.play(); // Ensure audio is playing when loaded
       document.getElementById("mute").style.display = "block";
-      var a = false; // Used for checking mute
+
+      if(conf.shuffle) {
+        // Adapted from https://stackoverflow.com/questions/15572253
+        var song_indexes = new Array();
+        var current_index = 0;
+        widget.bind(SC.Widget.Events.READY, function() {
+            widget.bind(SC.Widget.Events.FINISH, function() {
+                play_next_shuffled_song();
+            });
+
+            widget.getSounds(function(sounds) {
+                create_shuffled_indexes(sounds.length);
+                play_next_shuffled_song();
+            });
+        });
+        function play_next_shuffled_song() {
+            if (current_index >= song_indexes.length) {
+                current_index = 0;
+            }
+            var track_number = song_indexes[current_index];
+            current_index++;
+            widget.skip(track_number);
+            console.log(track_number);
+        }
+
+        function create_shuffled_indexes (num_songs) {
+            for (var i=0;i<num_songs;i++) {
+                song_indexes.push(i);
+            }
+            song_indexes = shuffle(song_indexes);
+        }
+
+        //+ Jonas Raoni Soares Silva
+        //@ http://jsfromhell.com/array/shuffle [v1.0]
+        function shuffle(o){ //v1.0
+            for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+            return o;
+        };
+      }
+
+
+      // Mute with spacebar
+      var a = false;
       document.addEventListener("keypress", (e) => {
         if(e.isComposing || e.keyCode === 32) {
           a = !a;
