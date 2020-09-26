@@ -1,9 +1,9 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
   yt: "",
-  sc: "https://api.soundcloud.com/tracks/815870209",
+  sc: "https://api.soundcloud.com/playlists/655480038",
   vol: 30, // Sets volume for everything
-  shuffle: false, // Shuffle songs in your playlist
+  shuffle: true, // Shuffle songs in your playlist
 
   serverName: "Your Server Name",
   serverFooter: "A certified hood classic.",
