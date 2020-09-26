@@ -139,7 +139,6 @@ function soundcloud() {
 function youtube() {
   loadJS("https://www.youtube.com/iframe_api"); // Load YT Embed API
   window.onYouTubePlayerAPIReady = () => {
-    var p = true;
     var player = new YT.Player("player", {
       height: '1',
       playerVars: {
@@ -153,15 +152,20 @@ function youtube() {
       }
     });
     document.getElementById("mute").style.display = "block";
+
+    // Pause with spacebar
+    var p = true;
     document.addEventListener("keypress", (e) => {
       if (e.isComposing || e.keyCode === 32) {
         p = !p;
-        if (!p)
+        if (!p) {
           player.pauseVideo(); // Stops music with spacebar
-        document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
-        if (p)
+          document.getElementById("mute").innerHTML = "Press spacebar to unmute the audio.";
+        }
+        if (p) {
           player.playVideo();
-        document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
+          document.getElementById("mute").innerHTML = "Press spacebar to mute the audio.";
+        }
       }
     });
   };
