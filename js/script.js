@@ -3,6 +3,7 @@ var conf = {
   yt: "",
   sc: "https://api.soundcloud.com/tracks/815870209",
   vol: 30, // Sets volume for everything
+  shuffle: false, // Shuffle songs in your playlist
 
   serverName: "Your Server Name",
   serverFooter: "A certified hood classic.",
