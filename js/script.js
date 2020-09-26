@@ -115,7 +115,8 @@ function soundcloud() {
         single_active: true
       }); // Loads audio into widget
       widget.setVolume(conf.vol); // Sets volume to whatever was configured
-      context.resume(); // Temporary solution to https://goo.gl/7K7WLu
+
+      context.resume().then(() => { console.log("context.resume()"); }); // Temporary solution to https://goo.gl/7K7WLu
       widget.play(); // Ensure audio is playing when loaded
       document.getElementById("mute").style.display = "block";
       var a = false; // Used for checking mute
