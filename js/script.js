@@ -12,15 +12,19 @@ var conf = {
 
   bg: "carousel", // Options: static, animated, carousel
   carouselImages: [
-  "https://files.catbox.moe/vpqvxx.jpg",
-  "https://files.catbox.moe/pzz9cp.jpg",
-  "https://files.catbox.moe/mq6k5x.png",
-  "https://files.catbox.moe/bh9yy0.png",
-  "https://files.catbox.moe/205gkr.jpg",
-  "https://files.catbox.moe/d49sa5.jpg",
-  "https://files.catbox.moe/efys1k.png"
+    "https://files.catbox.moe/vpqvxx.jpg",
+    "https://files.catbox.moe/pzz9cp.jpg",
+    "https://files.catbox.moe/mq6k5x.png",
+    "https://files.catbox.moe/bh9yy0.png",
+    "https://files.catbox.moe/205gkr.jpg",
+    "https://files.catbox.moe/d49sa5.jpg",
+    "https://files.catbox.moe/efys1k.png"
   ]
 };
+
+// Shuffle vars for SoundCloud
+var song_indexes = new Array();
+var current_index = 0;
 
 function init() {
   // To disable music, prepend '//' to 'music();' to comment the line.
@@ -37,13 +41,13 @@ function init() {
 // Runtime util for what time it is
 function cur_time() {
   var dd = new Date(),
-  h = addZero(dd.getHours()),
-  m = addZero(dd.getMinutes());
+    h = addZero(dd.getHours()),
+    m = addZero(dd.getMinutes());
   document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   setInterval(function() {
     var dd = new Date(),
-    h = addZero(dd.getHours()),
-    m = addZero(dd.getMinutes());
+      h = addZero(dd.getHours()),
+      m = addZero(dd.getMinutes());
     document.getElementById('cur_time').innerHTML = `${h}:${m}`;
   }, 60000);
 }
@@ -214,15 +218,15 @@ function youtube() {
 // A bunch of code for the background engine
 function bg() {
   switch (conf.bg) {
-    case "rainbow":
+  case "rainbow":
     animatedBG();
     break;
-    case "carousel":
+  case "carousel":
     carousel();
     break;
-    case "static":
-    case "simple":
-    default:
+  case "static":
+  case "simple":
+  default:
     break;
   }
 }
