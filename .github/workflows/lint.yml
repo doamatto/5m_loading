@@ -11,14 +11,19 @@ jobs:
     runs-on: ubuntu-latest  
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js 10.x
+    - name: Use Node.js 12.x
       uses: actions/setup-node@v2.1.2
+      with:
+        node-version: 12.x
       
-    - name: eslint
+    - name: Install ESlint deps
+      run: yarn
+    - name: Lint JS with ESlint
       run: |
-        npm i eslint -g
-        eslint js/script.js
+        yarn global add eslint
+        export PATH="$(yarn global bin):$PATH"
+        eslint gen.js
     - name: css-lint
       run: |
-        npm i csslint -g
+        yarn global add csslint
         csslint css/style.css
