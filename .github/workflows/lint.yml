@@ -26,4 +26,5 @@ jobs:
     - name: css-lint
       run: |
         yarn global add csslint
+        export PATH="$(yarn global bin):$PATH"
         csslint css/*
