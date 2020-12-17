@@ -1,7 +1,7 @@
 // For help configuring, go to https://github.com/doamatto/5m_loading/wiki/
 var conf = {
   yt: "",
-  sc: "https://api.soundcloud.com/playlists/655480038",
+  sc: "https://api.soundcloud.com/tracks/596663637",
   vol: 30, // Sets volume for everything
   shuffle: true, // Shuffle songs in your playlist
 
@@ -144,12 +144,12 @@ function soundcloud() {
         // Adapted from https://stackoverflow.com/questions/15572253
         widget.bind(SC.Widget.Events.READY, function() {
           widget.bind(SC.Widget.Events.FINISH, function() {
-            play_next_shuffled_song();
+            play_next_shuffled_song(widget);
           });
 
           widget.getSounds(function(sounds) {
             create_shuffled_indexes(sounds.length);
-            play_next_shuffled_song();
+            play_next_shuffled_song(widget);
           });
         });
       }
@@ -173,7 +173,7 @@ function soundcloud() {
 }
 
 
-function play_next_shuffled_song() {
+function play_next_shuffled_song(widget) {
   if (current_index >= song_indexes.length) {
     current_index = 0;
   }
