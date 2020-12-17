@@ -107,10 +107,11 @@ function music() {
     return console.error("[5mloading] Either you misconfigured your music, or you aren't using it. Please disable such in js/script.js to resolve this error.");
   if (conf.yt !== "" && conf.sc !== "") // Values for both sources
     return console.error("[5mloading] You provided both a Soundcloud and YouTube playlist");
-  if (conf.sc !== "" || conf.sc !== undefined) // Value for Soundcloud
-    return soundcloud();
-  if (conf.yt !== "" || conf.yt !== undefined) // Value for YouTube
+  if (conf.sc === "" || conf.sc === undefined) { // Value for Soundcloud
     return youtube();
+  } else if (conf.yt === "" || conf.yt === undefined) { // Value for YouTube
+    return soundcloud();
+  }
 }
 
 function loadJS(url) {
@@ -213,7 +214,7 @@ function youtube() {
         loop: 1
       }
     });
-    if(conf.shuffle) { player.setShuffle(true); } // Shuffles music if enabled
+    if(conf.shuffle) { player.setShuffle = true; } // Shuffles music if enabled
     document.getElementById("mute").style.display = "block";
 
     // Pause with spacebar
