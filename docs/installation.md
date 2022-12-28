@@ -1,0 +1,3 @@
+Installing 5mLoading can be done easily from one of two ways:
+- **a. via GitHub Releases (recommended)** Go to [the releases page for this repo](https://github.com/doamatto/5m_loading/releases/latest) and download `5m_loading.zip`. Extract the contents to a folder (it should automatically name it `5m_loading`), drag the folder into your resources folder, and add the following line to your `server.cfg` file: `ensure 5m_loading`.
+- **b. via `git clone`** Clone this repo using `git clone https://github.com/doamatto/5m_loading` with the folder for the repository going into your resources folder. Then, add the following line to your `server.cfg` file: `ensure 5m_loading`.
