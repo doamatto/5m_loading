@@ -22,9 +22,10 @@ var conf = {
 ```
 
 By changing the value of bg to:
-- `"static"`, you get the **Static** background;
-- `"animated"`, you get the **Rainbow** background; and:
-- `"carousel"`, you get the **Carousel** background.
+- `"static"`, you get the **Static** background,
+- `"animated"`, you get the **Rainbow** background,
+- `"carousel"`, you get the **Carousel** background; and:
+- `"video"`, you get to use a video as a background.
 
 ## Configuring Carousel Images
 The image carousel can have a virtually endless amount of pictures. I personally recommend no more than ten, as these pictures do still have to be downloaded and embed into the loading screen.
@@ -37,3 +38,8 @@ Following [the rules of JavaScript arrays](https://www.w3schools.com/js/js_array
 ```
 
 If you have an issues with adding new items to this array, ensure you're following the general rules outlined from the link above and, if you're still having problems, [create an issue](https://github.com/doamatto/5m_loading/issues/new) with your config included.
+
+## Configuring video backgrounds
+After changing to the `"video"` mode, you need to set the value for `video`. This can be anything that is a valid video format supported by [the <video> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Video).
+
+It's recommended that videos are kept short and compressed to allow quick loading and little to no issues while the loading screen loads. Video audio will not be played— this is intended as it adds unnecessary friction to the music engine.

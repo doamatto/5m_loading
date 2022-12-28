@@ -13,7 +13,7 @@ var conf = {
   fontUrl: "https://cdn.doamatto.xyz/inter.min.css", // Needs to be CSS stylesheet
   fontName: "'Inter var experimental', sans-serif", // Needs to be the name of the font on the stylesheet
 
-  bg: "carousel", // Options: static, animated, carousel
+  bg: "video", // Options: static, animated, carousel, videobg
   carouselImages: [
     "https://files.catbox.moe/vpqvxx.jpg",
     "https://files.catbox.moe/pzz9cp.jpg",
@@ -22,7 +22,8 @@ var conf = {
     "https://files.catbox.moe/205gkr.jpg",
     "https://files.catbox.moe/d49sa5.jpg",
     "https://files.catbox.moe/efys1k.png"
-  ]
+  ],
+  videoBG: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm", // can be any format supported by https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Video
 };
 
 // Shuffle vars for SoundCloud
@@ -242,11 +243,31 @@ function bg() {
   case "carousel":
     carousel();
     break;
+  case "video":
+    videobg();
+    break;
   case "static":
   case "simple":
   default:
     break;
   }
+}
+
+// Loading util for video background
+function videobg() {
+  document.getElementById('app').classList.add("carousel");
+  document.getElementsByClassName('server-logo')[0].style.display = "none";
+  var video = document.createElement("video");
+  video.autoplay = true;
+  video.crossorigin = "anonymous";
+  video.muted = true;
+  var videoSrc = document.createElement("source");
+  videoSrc.src = conf.videoBG;
+  video.appendChild(videoSrc);
+  document.getElementById('bg').appendChild(video);
+  var elem = document.getElementById('bg').childNodes;
+  elem[0].style.display = "block"; // it may have (for some reason) more children.
+  return;
 }
 
 // Runtime util for loading carousel images
@@ -294,7 +315,7 @@ function animatedBG() {
 
 function meta() {
   document.getElementById('server-name').innerHTML = conf.serverName;
-  document.getElementById("footer-alt").innerHTML = conf.serverFooter
+  document.getElementById("footer-alt").innerHTML = conf.serverFooter;
 }
 
 window.addEventListener("DOMContentLoaded", () => {
