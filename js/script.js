@@ -33,13 +33,11 @@ function init() {
   // To disable music, prepend '//' to 'music();' to comment the line.
   cur_time(); // Displays Current Time
   elapsed(); // Displays Elapsed Time for Joining
-  // eta(); // Displays ETA for Joining (doesnt work.. yet) (will break if in browser)
   music(); // Runs Music Engine
   header(); // Disables the header text if you have a logo 
   bg(); // Runs Background Engine
   meta(); // Adds user-meta onto page
   font();
-  // loadingbar(); // Runs the loading bar (doesnt work.. yet) (will break if in browser)
 }
 
 //Runtime util for loading the font
@@ -292,27 +290,6 @@ function animatedBG() {
     document.body.classList.add("animated");
     return true; // Reports a pass
   }, 10);
-}
-
-// Runtime util for the loadingbar
-function loadingbar() {
-  var count, thisCount = 0;
-  const handlers = {
-    startInitFunctionOrder(data) {
-      count = data.count;
-      // data.type could be INIT_BEFORE_MAP_LOADED, INIT_AFTER_MAP_LOADED, or INIT_SESSION
-    },
-    initFunctionInvoking(data) {
-      document.querySelector('.bar span').style.width = ((data.idx / count) * 100) + '%';
-    },
-    performMapLoadFunction(data) {
-      ++thisCount;
-      document.querySelector('.bar span').style.width = ((thisCount / count) * 100) + '%';
-    }
-  }
-  window.addEventListener('message', (e) => {
-    (handlers[e.data.eventName] || function() {})(e.data);
-  }); // Event listener for loading bar
 }
 
 function meta() {
