@@ -1,3 +1,6 @@
+| :exclamation:  [This repository is now maintained on Sourcehut here.](https://git.sr.ht/~maatt/5m_loading)   |
+|--------------------------------------------------------------------------------------------------------------|
+
 # 5M Loading
 
 Put simply, **5M Loading is just another loading screen for FiveM.**
